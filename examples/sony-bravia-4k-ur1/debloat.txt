@@ -1,0 +1,60 @@
+# Sony BRAVIA 4K UR1 (device BRAVIA_UR1_4K, product BRAVIA_UR1_4K_PA, MediaTek, armeabi-v7a)
+# Android 10 (Android TV, API 29), build QTG3.200305.006.S97 662301 (Pan-Asia firmware, Vietnam)
+#
+# Apply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-4k-ur1/debloat.txt
+# Undo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-4k-ur1/debloat.txt
+# Everything is DISABLED, not uninstalled. Comment out any line you want to keep.
+#
+# Same firmware as the UR2 (examples/sony-bravia-4k-ur2); this list follows that one, minus the voice
+# assistant, Chromecast and screen mirroring, which are kept here.
+# Stock launcher: com.google.android.tvlauncher (the restore.sh default is correct).
+# Live TV / tuner app: com.sony.dtv.tvx (DVB-T2; set it as live_tv_package in the launcher's config.xml).
+# Keep the com.sony.dtv.tvinput.* services, com.sony.dtv.braviasync*, com.sony.dtv.tvapi,
+# com.sony.dtv.sonysystemservice and the Sony settings apps: they drive HDMI, the tuner, Bravia Sync
+# and the remote.
+# Already disabled at the factory: tv.samba.ssm, com.sony.dtv.b2b.vendorprotocol, com.sony.dtv.b2b.softap,
+# screnmirroring.com, com.google.android.youtube.tvmusic, com.google.android.play.games.
+
+# tracking / ads / recommendations
+tv.samba.ssm                                   # Samba TV (ACR viewing data)
+com.qterics.da.product
+com.sony.dtv.da.service
+com.sonyericsson.idd.agent
+com.sony.dtv.usercontext                       # viewing context for recommendations
+com.sony.dtv.promos
+com.sony.dtv.sonyselect
+com.google.android.tvrecommendations           # only the stock launcher uses it
+com.google.android.feedback
+com.google.android.tv.bugreportsender
+com.sony.dtv.sonybugreportsys
+com.sony.dtv.sonyloglevelsettingsys
+android.autoinstalls.config.sony.bravia        # Play auto-install of partner apps
+
+# demo / shop mode
+com.sony.dtv.demosupport
+com.sony.dtv.demosystemsupport
+com.sony.dtv.multiscreendemo
+
+# Sony IoT and ambient services
+com.sony.dtv.seeds.iot
+com.sony.dtv.seeds.iot.remotestart
+com.sony.dtv.seeds.auth
+com.sony.dtv.livingfit                         # Living Decor / ambient service
+
+# hotel / professional mode (unused in a home)
+com.sony.dtv.b2b.prosettings
+com.sony.dtv.b2b.hotelmode
+com.sony.dtv.b2b.importexport
+com.sony.dtv.b2b.rs232csupport
+
+# help
+com.sony.dtv.customersupport
+com.sony.dtv.smarthelp
+
+# preloaded apps, disabled by choice
+com.google.android.youtube.tvmusic
+com.google.android.play.games
+
+# screensaver: Google Backdrop replaced by the launcher's Gallery (settings put secure screensaver_components
+# com.gathin.tvhome/.GalleryDream, or .ClockDream)
+com.google.android.backdrop
