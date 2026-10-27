@@ -350,7 +350,8 @@ export class Tv extends DurableObject {
     }
     if (m.t === "hello") {
       const phones = Array.isArray(m.phones) ? m.phones.filter((h) => typeof h === "string" && HEX64.test(h)).slice(0, MAX_PHONES) : [];
-      await this.ctx.storage.put({ phones, name: typeof m.name === "string" ? m.name.slice(0, 60) : "TV", lastSeen: Date.now() });
+      await this.ctx.storage.put({ phones, name: typeof m.name === "string" ? m.name.slice(0, 60) : "TV", lastSeen: Date.now(),
+        lang: typeof m.lang === "string" && /^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$/.test(m.lang) ? m.lang : "" });
       // A launcher without agents sends none: no agent key works with it.
       await this.setAgents(cleanAgents(m.agents));
       if (m.state && typeof m.state === "object") await this.ctx.storage.put("state", m.state);
@@ -464,13 +465,14 @@ export class Tv extends DurableObject {
       live = !!g.get("droppedAt") && !g.get("offlineSent") && Date.now() - g.get("droppedAt") < GRACE_MS;
     }
     if (live) await this.ctx.storage.put("lastSeen", Date.now());
-    const s = await this.ctx.storage.get(["name", "lastSeen", "state", "power"]);
+    const s = await this.ctx.storage.get(["name", "lastSeen", "state", "power", "lang"]);
     return {
       online: live,
       name: s.get("name") || "TV",
       lastSeen: s.get("lastSeen") || 0,
       state: s.get("state") || null,
       power: s.get("power") || null,
+      lang: s.get("lang") || "",
     };
   }
 

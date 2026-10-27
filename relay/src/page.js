@@ -222,107 +222,107 @@ export const PAGE = `<!doctype html>
 
   <div id="unpaired" class="card empty" hidden>
     <i class="big" data-i="tv"></i>
-    <b>Not paired yet</b>
-    On the TV, hold OK on the Wi-Fi button at the top of the Home screen and scan the QR code with this phone.
-    <p style="margin:24px 0 0">Or paste the QR code's link (in the camera, hold the link and copy it):</p>
+    <b data-i18n="unp_title">Not paired yet</b>
+    <span data-i18n="unp_text">On the TV, hold OK on the Wi-Fi button at the top of the Home screen and scan the QR code with this phone.</span>
+    <p style="margin:24px 0 0" data-i18n="unp_paste">Or paste the QR code's link (in the camera, hold the link and copy it):</p>
     <div class="row">
       <input id="pairLink" type="url" autocomplete="off" placeholder="https://tv-remote…/#…" style="flex:1">
-      <button class="pill white" id="pairBtn" style="flex:0 0 auto">Pair</button>
+      <button class="pill white" id="pairBtn" style="flex:0 0 auto" data-i18n="pair">Pair</button>
     </div>
   </div>
 
   <div id="paired" hidden>
     <section class="card offline" id="offlineCard">
       <i class="big" data-i="tvoff"></i>
-      <b id="offlineTitle">Connecting to the TV…</b>
-      <span id="offlineText">The controls appear as soon as the TV answers.</span>
+      <b id="offlineTitle" data-i18n="connecting_title">Connecting to the TV…</b>
+      <span id="offlineText" data-i18n="connecting_text">The controls appear as soon as the TV answers.</span>
     </section>
 
     <!-- Remote -->
     <div class="tab" id="tab-remote">
       <section class="card needs-tv">
         <div class="card-head">
-          <span class="eyebrow">Live view</span>
+          <span class="eyebrow" data-i18n="live_view">Live view</span>
           <div style="display:flex;gap:8px">
-            <button class="pill sm icon" id="liveFull" aria-label="Full screen" style="width:40px"><i data-i="expand"></i></button>
-            <button class="pill sm icon" id="liveToggle" aria-label="Show or hide the live view" style="width:40px"><i data-i="eye"></i></button>
+            <button class="pill sm icon" id="liveFull" aria-label="Full screen" data-i18n-aria-label="a_full" style="width:40px"><i data-i="expand"></i></button>
+            <button class="pill sm icon" id="liveToggle" aria-label="Show or hide the live view" data-i18n-aria-label="a_live_toggle" style="width:40px"><i data-i="eye"></i></button>
           </div>
         </div>
         <div id="liveBox">
-          <div class="screen" id="liveScreen"><img id="liveImg" alt=""><div class="msg" id="liveMsg">Starting the live view…</div>
-            <button class="exit" id="liveExit" aria-label="Leave full screen"><i data-i="shrink"></i></button></div>
-          <p class="hint">About two pictures a second through the relay, smoother on the home network. Netflix and other protected video, HDMI and the tuner show black.</p>
+          <div class="screen" id="liveScreen"><img id="liveImg" alt=""><div class="msg" id="liveMsg" data-i18n="live_starting">Starting the live view…</div>
+            <button class="exit" id="liveExit" aria-label="Leave full screen" data-i18n-aria-label="a_exit_full"><i data-i="shrink"></i></button></div>
+          <p class="hint" data-i18n="live_hint">About two pictures a second through the relay, smoother on the home network. Netflix and other protected video, HDMI and the tuner show black.</p>
         </div>
       </section>
 
       <section class="card needs-tv remote" style="padding:24px 16px 20px">
         <div class="ring">
-          <button class="arrow up" data-key="Up" data-repeat aria-label="Up"><i data-i="up"></i></button>
-          <button class="arrow left" data-key="Left" data-repeat aria-label="Left"><i data-i="left"></i></button>
-          <button class="arrow right" data-key="Right" data-repeat aria-label="Right"><i data-i="right"></i></button>
-          <button class="arrow down" data-key="Down" data-repeat aria-label="Down"><i data-i="down"></i></button>
-          <button class="ok" id="okBtn" aria-label="OK, hold for the long press">OK</button>
+          <button class="arrow up" data-key="Up" data-repeat aria-label="Up" data-i18n-aria-label="a_up"><i data-i="up"></i></button>
+          <button class="arrow left" data-key="Left" data-repeat aria-label="Left" data-i18n-aria-label="a_left"><i data-i="left"></i></button>
+          <button class="arrow right" data-key="Right" data-repeat aria-label="Right" data-i18n-aria-label="a_right"><i data-i="right"></i></button>
+          <button class="arrow down" data-key="Down" data-repeat aria-label="Down" data-i18n-aria-label="a_down"><i data-i="down"></i></button>
+          <button class="ok" id="okBtn" aria-label="OK, hold for the long press" data-i18n-aria-label="a_ok">OK</button>
         </div>
         <div class="line">
-          <button class="key" data-key="Return" aria-label="Back"><i data-i="back"></i></button>
-          <button class="key big" data-key="Home" aria-label="Home"><i data-i="home"></i></button>
-          <button class="key white" data-key="ActionMenu|Options|SyncMenu" aria-label="Menu"><i data-i="menu"></i></button>
+          <button class="key" data-key="Return" aria-label="Back" data-i18n-aria-label="a_back"><i data-i="back"></i></button>
+          <button class="key big" data-key="Home" aria-label="Home" data-i18n-aria-label="a_home"><i data-i="home"></i></button>
+          <button class="key white" data-key="ActionMenu|Options|SyncMenu" aria-label="Menu" data-i18n-aria-label="a_menu"><i data-i="menu"></i></button>
         </div>
         <div class="line">
-          <button class="key" data-key="Mute" aria-label="Mute"><i data-i="mute"></i></button>
-          <div class="rocker"><button data-key="VolumeDown" data-repeat aria-label="Volume down"><i data-i="vdown"></i></button><button data-key="VolumeUp" data-repeat aria-label="Volume up"><i data-i="vup"></i></button></div>
+          <button class="key" data-key="Mute" aria-label="Mute" data-i18n-aria-label="a_mute"><i data-i="mute"></i></button>
+          <div class="rocker"><button data-key="VolumeDown" data-repeat aria-label="Volume down" data-i18n-aria-label="a_vdown"><i data-i="vdown"></i></button><button data-key="VolumeUp" data-repeat aria-label="Volume up" data-i18n-aria-label="a_vup"><i data-i="vup"></i></button></div>
         </div>
         <div class="line">
-          <button class="key" id="kbOpen" aria-label="Keyboard"><i data-i="kb"></i></button>
-          <div class="rocker"><button data-key="ChannelDown" data-repeat aria-label="Channel down"><i data-i="minus"></i></button><span class="tag">CH</span><button data-key="ChannelUp" data-repeat aria-label="Channel up"><i data-i="plus"></i></button></div>
+          <button class="key" id="kbOpen" aria-label="Keyboard" data-i18n-aria-label="a_kb"><i data-i="kb"></i></button>
+          <div class="rocker"><button data-key="ChannelDown" data-repeat aria-label="Channel down" data-i18n-aria-label="a_chdown"><i data-i="minus"></i></button><span class="tag" data-i18n="ch_tag">CH</span><button data-key="ChannelUp" data-repeat aria-label="Channel up" data-i18n-aria-label="a_chup"><i data-i="plus"></i></button></div>
         </div>
       </section>
 
       <section class="card needs-tv" id="kb" hidden>
-        <div class="card-head"><span class="eyebrow">Keyboard</span><button class="pill sm" id="kbClose">Done</button></div>
-        <textarea id="kbText" placeholder="Type or paste. It appears in the TV's selected text field." autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+        <div class="card-head"><span class="eyebrow" data-i18n="keyboard">Keyboard</span><button class="pill sm" id="kbClose" data-i18n="done_btn">Done</button></div>
+        <textarea id="kbText" placeholder="Type or paste. It appears in the TV's selected text field." data-i18n-placeholder="kb_ph" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
         <div class="row">
-          <button class="pill white" id="kbEnter"><i data-i="enter"></i>Enter</button>
-          <button class="pill icon" id="kbClear" aria-label="Clear"><i data-i="x"></i></button>
+          <button class="pill white" id="kbEnter"><i data-i="enter"></i><span data-i18n="enter">Enter</span></button>
+          <button class="pill icon" id="kbClear" aria-label="Clear" data-i18n-aria-label="a_clear"><i data-i="x"></i></button>
         </div>
-        <p class="hint">Select a text field on the TV first. What you type replaces its text as you go.</p>
+        <p class="hint" data-i18n="kb_hint">Select a text field on the TV first. What you type replaces its text as you go.</p>
       </section>
 
       <section class="card needs-tv">
-        <div class="card-head"><span class="eyebrow">Power</span></div>
+        <div class="card-head"><span class="eyebrow" data-i18n="power">Power</span></div>
         <div id="ipSetup" hidden style="margin-bottom:14px">
-          <p class="hint" style="margin-top:0" id="ipSetupText">These use the TV's IP control, which isn't set up yet. On the TV:</p>
+          <p class="hint" style="margin-top:0" id="ipSetupText" data-i18n="ip_setup_new">These use the TV's IP control, which isn't set up yet. On the TV:</p>
           <ol class="steps">
-            <li><b>Settings › Network &amp; Internet › Remote device settings › Control remotely</b>: On.</li>
-            <li><b>Settings › Network &amp; Internet › Home network › IP control › Authentication</b>: Normal and Pre-Shared Key.</li>
-            <li><b>Pre-Shared Key</b> (same menu): any key, for example 4 digits.</li>
-            <li>Enter the same key here.</li>
+            <li data-i18n-html="step1"><b>Settings › Network &amp; Internet › Remote device settings › Control remotely</b>: On.</li>
+            <li data-i18n-html="step2"><b>Settings › Network &amp; Internet › Home network › IP control › Authentication</b>: Normal and Pre-Shared Key.</li>
+            <li data-i18n-html="step3"><b>Pre-Shared Key</b> (same menu): any key, for example 4 digits.</li>
+            <li data-i18n="step4_here">Enter the same key here.</li>
           </ol>
           <div class="row" style="margin-top:0">
-            <input id="psk2" type="password" autocomplete="off" maxlength="64" placeholder="Pre-Shared Key" style="flex:1">
-            <button class="pill white" id="savePsk2" style="flex:0 0 auto">Save</button>
+            <input id="psk2" type="password" autocomplete="off" maxlength="64" placeholder="Pre-Shared Key" data-i18n-placeholder="psk_ph" style="flex:1">
+            <button class="pill white" id="savePsk2" style="flex:0 0 auto" data-i18n="save">Save</button>
           </div>
         </div>
         <div class="power">
-          <button id="btnPicture"><i id="pictureIcon" data-i="screenoff"></i><span id="pictureLabel">Screen off</span></button>
-          <button data-cmd="standby" class="red" id="btnStandby"><i data-i="power"></i>Standby</button>
-          <button data-cmd="wake" class="green" id="btnWake" hidden><i data-i="power"></i>Turn on</button>
+          <button id="btnPicture"><i id="pictureIcon" data-i="screenoff"></i><span id="pictureLabel" data-i18n="screen_off">Screen off</span></button>
+          <button data-cmd="standby" class="red" id="btnStandby"><i data-i="power"></i><span data-i18n="standby">Standby</span></button>
+          <button data-cmd="wake" class="green" id="btnWake" hidden><i data-i="power"></i><span data-i18n="turn_on">Turn on</span></button>
         </div>
-        <p class="hint">Screen off blanks the picture but keeps the TV running, so Screen on always works. From standby the TV may not hear Turn on.</p>
+        <p class="hint" data-i18n="power_hint">Screen off blanks the picture but keeps the TV running, so Screen on always works. From standby the TV may not hear Turn on.</p>
       </section>
     </div>
 
     <!-- Message -->
     <div class="tab" id="tab-message" hidden>
       <section class="card needs-tv">
-        <div class="card-head"><span class="eyebrow">Message on the TV</span></div>
-        <textarea id="text" maxlength="500" placeholder="Dinner is ready!"></textarea>
+        <div class="card-head"><span class="eyebrow" data-i18n="msg_title">Message on the TV</span></div>
+        <textarea id="text" maxlength="500" placeholder="Dinner is ready!" data-i18n-placeholder="msg_ph"></textarea>
         <div class="count"><span id="count">0</span>/500</div>
         <div class="row">
-          <button class="pill white" id="send"><i data-i="send"></i>Show on TV</button>
-          <button class="pill icon" id="clear" aria-label="Clear the message on the TV"><i data-i="x"></i></button>
+          <button class="pill white" id="send"><i data-i="send"></i><span data-i18n="show_on_tv">Show on TV</span></button>
+          <button class="pill icon" id="clear" aria-label="Clear the message on the TV" data-i18n-aria-label="a_clear_msg"><i data-i="x"></i></button>
         </div>
-        <p class="hint">The TV goes to Home and shows the message in large type until someone presses OK. The ✕ button takes it off.</p>
+        <p class="hint" data-i18n="msg_hint">The TV goes to Home and shows the message in large type until someone presses OK. The ✕ button takes it off.</p>
       </section>
     </div>
 
@@ -331,31 +331,31 @@ export const PAGE = `<!doctype html>
       <section class="card needs-tv">
         <div class="lockface" id="lockFace">
           <div class="badge"><i id="lockIcon" data-i="unlock"></i></div>
-          <div><div class="eyebrow">This TV is</div><div class="state" id="lockBadge">Unlocked</div></div>
+          <div><div class="eyebrow" data-i18n="tv_is">This TV is</div><div class="state" id="lockBadge" data-i18n="unlocked">Unlocked</div></div>
         </div>
         <div class="row" style="margin-top:18px">
-          <button class="pill white" id="lockNow"><i data-i="lock"></i>Lock</button>
-          <button class="pill" id="unlockNow"><i data-i="unlock"></i>Unlock</button>
+          <button class="pill white" id="lockNow"><i data-i="lock"></i><span data-i18n="lock">Lock</span></button>
+          <button class="pill" id="unlockNow"><i data-i="unlock"></i><span data-i18n="unlock">Unlock</span></button>
         </div>
-        <p class="hint" id="noPin" hidden>Set a 4-digit PIN in Settings first.</p>
+        <p class="hint" id="noPin" data-i18n="no_pin" hidden>Set a 4-digit PIN in Settings first.</p>
       </section>
       <section class="card needs-tv">
-        <div class="card-head"><span class="eyebrow">Lock timer</span><i data-i="timer" style="color:var(--dim)"></i></div>
+        <div class="card-head"><span class="eyebrow" data-i18n="lock_timer">Lock timer</span><i data-i="timer" style="color:var(--dim)"></i></div>
         <div id="timerRun" hidden>
           <div class="countdown" id="countdown">0:00</div>
-          <p class="hint" style="text-align:center;margin-top:0">until the TV locks</p>
-          <div class="row"><button class="pill" id="timerCancel">Cancel timer</button></div>
+          <p class="hint" style="text-align:center;margin-top:0" data-i18n="until_locks">until the TV locks</p>
+          <div class="row"><button class="pill" id="timerCancel" data-i18n="cancel_timer">Cancel timer</button></div>
         </div>
         <div id="timerSet">
           <div class="chips" id="chips">
-            <button class="pill sm" data-min="15">15 min</button><button class="pill sm" data-min="30">30 min</button><button class="pill sm" data-min="45">45 min</button>
-            <button class="pill sm" data-min="60">1 h</button><button class="pill sm" data-min="90">1 h 30</button><button class="pill sm" data-min="120">2 h</button>
+            <button class="pill sm" data-min="15" data-i18n="min_n" data-i18n-args="[15]">15 min</button><button class="pill sm" data-min="30" data-i18n="min_n" data-i18n-args="[30]">30 min</button><button class="pill sm" data-min="45" data-i18n="min_n" data-i18n-args="[45]">45 min</button>
+            <button class="pill sm" data-min="60" data-i18n="h_n" data-i18n-args="[1]">1 h</button><button class="pill sm" data-min="90" data-i18n="h_m" data-i18n-args="[1,30]">1 h 30</button><button class="pill sm" data-min="120" data-i18n="h_n" data-i18n-args="[2]">2 h</button>
           </div>
           <div class="row">
-            <input id="minutes" type="number" inputmode="numeric" min="1" max="720" placeholder="Minutes" style="flex:1">
-            <button class="pill white" id="timerStart" style="flex:0 0 auto">Start</button>
+            <input id="minutes" type="number" inputmode="numeric" min="1" max="720" placeholder="Minutes" data-i18n-placeholder="minutes_ph" style="flex:1">
+            <button class="pill white" id="timerStart" style="flex:0 0 auto" data-i18n="start">Start</button>
           </div>
-          <p class="hint">The TV counts down in a corner, then locks. The PIN unlocks it.</p>
+          <p class="hint" data-i18n="timer_hint">The TV counts down in a corner, then locks. The PIN unlocks it.</p>
         </div>
       </section>
     </div>
@@ -364,10 +364,10 @@ export const PAGE = `<!doctype html>
     <div class="tab" id="tab-activity" hidden>
       <section class="card needs-tv">
         <div class="card-head">
-          <span class="eyebrow">Screen time</span>
-          <div class="seg" id="range"><button data-r="today" class="sel">Today</button><button data-r="7d">7 days</button></div>
+          <span class="eyebrow" data-i18n="screen_time">Screen time</span>
+          <div class="seg" id="range"><button data-r="today" class="sel" data-i18n="today">Today</button><button data-r="7d" data-i18n="days7">7 days</button></div>
         </div>
-        <div id="stBody"><p class="hint" style="margin:0">Loading…</p></div>
+        <div id="stBody"><p class="hint" style="margin:0" data-i18n="loading">Loading…</p></div>
       </section>
     </div>
 
@@ -376,46 +376,46 @@ export const PAGE = `<!doctype html>
       <section class="card group">
         <div class="setting">
           <span class="ic"><i data-i="bell"></i></span>
-          <div class="txt"><b>Notifications</b><span id="notifyHint">When the TV turns on or off</span></div>
-          <input type="checkbox" class="switch" id="notify" aria-label="Notify me when the TV turns on or off">
+          <div class="txt"><b data-i18n="notifications">Notifications</b><span id="notifyHint" data-i18n="notify_hint">When the TV turns on or off</span></div>
+          <input type="checkbox" class="switch" id="notify" aria-label="Notify me when the TV turns on or off" data-i18n-aria-label="a_notify">
         </div>
         <div class="setting" id="notifyOffRow" hidden>
           <span class="ic"><i data-i="power"></i></span>
-          <div class="txt"><b>When it turns off</b><span>Off: only when the TV turns on</span></div>
-          <input type="checkbox" class="switch" id="notifyOff" aria-label="Also notify me when the TV turns off">
+          <div class="txt"><b data-i18n="when_off">When it turns off</b><span data-i18n="when_off_hint">Off: only when the TV turns on</span></div>
+          <input type="checkbox" class="switch" id="notifyOff" aria-label="Also notify me when the TV turns off" data-i18n-aria-label="a_notify_off">
         </div>
         <div class="setting" id="install" hidden>
           <span class="ic"><i data-i="add"></i></span>
-          <div class="txt"><b>Add to Home Screen</b><span id="installHint"></span></div>
-          <button class="pill sm white" id="installBtn" hidden>Install</button>
+          <div class="txt"><b data-i18n="add_home">Add to Home Screen</b><span id="installHint"></span></div>
+          <button class="pill sm white" id="installBtn" data-i18n="install" hidden>Install</button>
         </div>
       </section>
 
       <section class="card group needs-tv">
         <div class="setting">
           <span class="ic"><i data-i="key"></i></span>
-          <div class="txt"><b>PIN</b><span>Unlocks the TV; also its App lock PIN</span></div>
+          <div class="txt"><b data-i18n="pin_title">PIN</b><span data-i18n="pin_hint">Unlocks the TV; also its App lock PIN</span></div>
         </div>
         <div class="sub">
           <div class="row" style="margin-top:0">
-            <input id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="4 digits" style="flex:1">
-            <button class="pill white" id="savePin" style="flex:0 0 auto">Save</button>
+            <input id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="4 digits" data-i18n-placeholder="pin_ph" style="flex:1">
+            <button class="pill white" id="savePin" style="flex:0 0 auto" data-i18n="save">Save</button>
           </div>
         </div>
         <div class="setting">
           <span class="ic"><i data-i="plug"></i></span>
-          <div class="txt"><b>Sony IP control key</b><span>For Screen off/on, standby and the remote keys</span></div>
+          <div class="txt"><b data-i18n="psk_title">Sony IP control key</b><span data-i18n="psk_hint">For Screen off/on, standby and the remote keys</span></div>
         </div>
         <div class="sub">
           <ol class="steps">
-            <li><b>Settings › Network &amp; Internet › Remote device settings › Control remotely</b>: On.</li>
-            <li><b>Settings › Network &amp; Internet › Home network › IP control › Authentication</b>: Normal and Pre-Shared Key.</li>
-            <li><b>Pre-Shared Key</b> (same menu): any key, for example 4 digits.</li>
-            <li>Enter the same key below.</li>
+            <li data-i18n-html="step1"><b>Settings › Network &amp; Internet › Remote device settings › Control remotely</b>: On.</li>
+            <li data-i18n-html="step2"><b>Settings › Network &amp; Internet › Home network › IP control › Authentication</b>: Normal and Pre-Shared Key.</li>
+            <li data-i18n-html="step3"><b>Pre-Shared Key</b> (same menu): any key, for example 4 digits.</li>
+            <li data-i18n="step4_below">Enter the same key below.</li>
           </ol>
           <div class="row" style="margin-top:0">
-            <input id="psk" type="password" autocomplete="off" maxlength="64" placeholder="Pre-Shared Key" style="flex:1">
-            <button class="pill white" id="savePsk" style="flex:0 0 auto">Save</button>
+            <input id="psk" type="password" autocomplete="off" maxlength="64" placeholder="Pre-Shared Key" data-i18n-placeholder="psk_ph" style="flex:1">
+            <button class="pill white" id="savePsk" style="flex:0 0 auto" data-i18n="save">Save</button>
           </div>
         </div>
       </section>
@@ -423,44 +423,56 @@ export const PAGE = `<!doctype html>
       <section class="card group needs-tv" id="adbCard" hidden>
         <div class="setting">
           <span class="ic"><i data-i="terminal"></i></span>
-          <div class="txt"><b>ADB</b><span id="adbHint">Wireless debugging</span></div>
-          <input type="checkbox" class="switch" id="adbSwitch" aria-label="ADB over the network">
+          <div class="txt"><b>ADB</b><span id="adbHint" data-i18n="adb_default">Wireless debugging</span></div>
+          <input type="checkbox" class="switch" id="adbSwitch" aria-label="ADB over the network" data-i18n-aria-label="a_adb">
         </div>
       </section>
 
       <section class="card group needs-tv" id="agentsCard" hidden>
         <div class="setting">
           <span class="ic"><i data-i="bot"></i></span>
-          <div class="txt"><b>AI agents</b><span>An assistant such as Claude uses this TV with a key of its own</span></div>
+          <div class="txt"><b data-i18n="agents">AI agents</b><span data-i18n="agents_hint">An assistant such as Claude uses this TV with a key of its own</span></div>
         </div>
         <div class="sub">
           <div class="row" style="margin-top:0">
-            <input id="agentName" type="text" maxlength="40" autocomplete="off" placeholder="Name, e.g. Claude" style="flex:1">
-            <button class="pill white" id="agentCreate" style="flex:0 0 auto">Create</button>
+            <input id="agentName" type="text" maxlength="40" autocomplete="off" placeholder="Name, e.g. Claude" data-i18n-placeholder="agent_name_ph" style="flex:1">
+            <button class="pill white" id="agentCreate" style="flex:0 0 auto" data-i18n="create">Create</button>
           </div>
           <div class="keybox" id="agentKeyBox" hidden>
-            <b id="agentKeyTitle">Copy the key now</b>
-            <p class="hint" style="margin-top:4px">It is shown only this once. The agent sends it as <b>Authorization: Bearer</b> (or <b>TV_AGENT_KEY</b> for the MCP server).</p>
+            <b id="agentKeyTitle" data-i18n="key_copy_now">Copy the key now</b>
+            <p class="hint" style="margin-top:4px" data-i18n-html="key_once">It is shown only this once. The agent sends it as <b>Authorization: Bearer</b> (or <b>TV_AGENT_KEY</b> for the MCP server).</p>
             <code id="agentKey"></code>
             <div class="row">
-              <button class="pill white" id="agentCopy"><i data-i="copy"></i>Copy key</button>
-              <button class="pill icon" id="agentKeyHide" aria-label="Hide the key" style="flex:0 0 auto"><i data-i="x"></i></button>
+              <button class="pill white" id="agentCopy"><i data-i="copy"></i><span data-i18n="copy_key">Copy key</span></button>
+              <button class="pill icon" id="agentKeyHide" aria-label="Hide the key" data-i18n-aria-label="a_hide_key" style="flex:0 0 auto"><i data-i="x"></i></button>
             </div>
           </div>
           <p class="hint" id="agentPerms"></p>
         </div>
         <div id="agentList"></div>
         <div class="sub" id="agentLogBox" hidden style="padding-top:14px">
-          <div class="eyebrow" style="margin-bottom:6px">Recent agent commands</div>
+          <div class="eyebrow" style="margin-bottom:6px" data-i18n="agent_log">Recent agent commands</div>
           <ul class="agentlog" id="agentLog"></ul>
         </div>
       </section>
 
       <section class="card group">
         <div class="setting">
+          <span class="ic"><i data-i="globe"></i></span>
+          <div class="txt"><b data-i18n="language">Language</b><span data-i18n="language_hint">Auto follows the TV's language</span></div>
+        </div>
+        <div class="sub">
+          <div class="chips" id="langPick">
+            <button class="pill sm" data-lang="" data-i18n="lang_auto">Auto (from the TV)</button><button class="pill sm" data-lang="en" lang="en">English</button><button class="pill sm" data-lang="vi" lang="vi">Tiếng Việt</button><button class="pill sm" data-lang="zh" lang="zh-CN">中文</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card group">
+        <div class="setting">
           <span class="ic" style="color:#ff6961"><i data-i="unlink"></i></span>
-          <div class="txt"><b>Forget this TV</b><span>Scan the QR code again to pair</span></div>
-          <button class="pill sm red" id="forget">Forget</button>
+          <div class="txt"><b data-i18n="forget_title">Forget this TV</b><span data-i18n="forget_hint">Scan the QR code again to pair</span></div>
+          <button class="pill sm red" id="forget" data-i18n="forget">Forget</button>
         </div>
       </section>
     </div>
@@ -468,16 +480,380 @@ export const PAGE = `<!doctype html>
 </main>
 
 <nav class="tabs" id="tabs" hidden>
-  <button data-tab="remote" class="sel"><i data-i="dpad"></i>Remote</button>
-  <button data-tab="message"><i data-i="chat"></i>Message</button>
-  <button data-tab="lock"><i data-i="lock"></i>Lock</button>
-  <button data-tab="activity"><i data-i="chart"></i>Activity</button>
-  <button data-tab="settings"><i data-i="gear"></i>Settings</button>
+  <button data-tab="remote" class="sel"><i data-i="dpad"></i><span data-i18n="tab_remote">Remote</span></button>
+  <button data-tab="message"><i data-i="chat"></i><span data-i18n="tab_message">Message</span></button>
+  <button data-tab="lock"><i data-i="lock"></i><span data-i18n="tab_lock">Lock</span></button>
+  <button data-tab="activity"><i data-i="chart"></i><span data-i18n="tab_activity">Activity</span></button>
+  <button data-tab="settings"><i data-i="gear"></i><span data-i18n="tab_settings">Settings</span></button>
 </nav>
 <div id="toast"></div>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
+
+  // ---- i18n (begin) --------------------------------------------------------------------------------
+  // English, Vietnamese and Simplified Chinese. t(key, a, b) fills {0}, {1}; a key missing in vi or zh falls
+  // back to English. Brand and proper names (TV Remote, Netflix, PIN, ADB, Wi-Fi) stay as they are.
+  const T = {
+    en: {
+      unp_title: "Not paired yet",
+      unp_text: "On the TV, hold OK on the Wi-Fi button at the top of the Home screen and scan the QR code with this phone.",
+      unp_paste: "Or paste the QR code's link (in the camera, hold the link and copy it):",
+      pair: "Pair",
+      connecting_title: "Connecting to the TV…",
+      connecting_text: "The controls appear as soon as the TV answers.",
+      live_view: "Live view",
+      a_full: "Full screen",
+      a_live_toggle: "Show or hide the live view",
+      live_starting: "Starting the live view…",
+      a_exit_full: "Leave full screen",
+      live_hint: "About two pictures a second through the relay, smoother on the home network. Netflix and other protected video, HDMI and the tuner show black.",
+      a_up: "Up", a_down: "Down", a_left: "Left", a_right: "Right",
+      a_ok: "OK, hold for the long press",
+      a_back: "Back", a_home: "Home", a_menu: "Menu", a_mute: "Mute",
+      a_vdown: "Volume down", a_vup: "Volume up", a_kb: "Keyboard",
+      a_chdown: "Channel down", a_chup: "Channel up", ch_tag: "CH",
+      keyboard: "Keyboard", done_btn: "Done",
+      kb_ph: "Type or paste. It appears in the TV's selected text field.",
+      enter: "Enter", a_clear: "Clear",
+      kb_hint: "Select a text field on the TV first. What you type replaces its text as you go.",
+      power: "Power",
+      ip_setup_new: "These use the TV's IP control, which isn't set up yet. On the TV:",
+      ip_setup_refused: "The TV refuses the saved IP control key. Check it on the TV and enter it again:",
+      step1: "<b>Settings › Network &amp; Internet › Remote device settings › Control remotely</b>: On.",
+      step2: "<b>Settings › Network &amp; Internet › Home network › IP control › Authentication</b>: Normal and Pre-Shared Key.",
+      step3: "<b>Pre-Shared Key</b> (same menu): any key, for example 4 digits.",
+      step4_here: "Enter the same key here.",
+      step4_below: "Enter the same key below.",
+      psk_ph: "Pre-Shared Key", save: "Save",
+      screen_off: "Screen off", screen_on: "Screen on", standby: "Standby", turn_on: "Turn on",
+      power_hint: "Screen off blanks the picture but keeps the TV running, so Screen on always works. From standby the TV may not hear Turn on.",
+      msg_title: "Message on the TV", msg_ph: "Dinner is ready!", show_on_tv: "Show on TV",
+      a_clear_msg: "Clear the message on the TV",
+      msg_hint: "The TV goes to Home and shows the message in large type until someone presses OK. The ✕ button takes it off.",
+      tv_is: "This TV is", locked: "Locked", unlocked: "Unlocked", lock: "Lock", unlock: "Unlock",
+      no_pin: "Set a 4-digit PIN in Settings first.",
+      lock_timer: "Lock timer", until_locks: "until the TV locks", cancel_timer: "Cancel timer",
+      minutes_ph: "Minutes", start: "Start",
+      timer_hint: "The TV counts down in a corner, then locks. The PIN unlocks it.",
+      screen_time: "Screen time", today: "Today", days7: "7 days", loading: "Loading…",
+      notifications: "Notifications", notify_hint: "When the TV turns on or off",
+      a_notify: "Notify me when the TV turns on or off",
+      when_off: "When it turns off", when_off_hint: "Off: only when the TV turns on",
+      a_notify_off: "Also notify me when the TV turns off",
+      add_home: "Add to Home Screen", install: "Install",
+      pin_title: "PIN", pin_hint: "Unlocks the TV; also its App lock PIN", pin_ph: "4 digits",
+      psk_title: "Sony IP control key", psk_hint: "For Screen off/on, standby and the remote keys",
+      adb_default: "Wireless debugging", a_adb: "ADB over the network",
+      agents: "AI agents", agents_hint: "An assistant such as Claude uses this TV with a key of its own",
+      agent_name_ph: "Name, e.g. Claude", create: "Create", key_copy_now: "Copy the key now",
+      key_once: "It is shown only this once. The agent sends it as <b>Authorization: Bearer</b> (or <b>TV_AGENT_KEY</b> for the MCP server).",
+      copy_key: "Copy key", a_hide_key: "Hide the key", agent_log: "Recent agent commands",
+      language: "Language", language_hint: "Auto follows the TV's language", lang_auto: "Auto (from the TV)",
+      forget_title: "Forget this TV", forget_hint: "Scan the QR code again to pair", forget: "Forget",
+      tab_remote: "Remote", tab_message: "Message", tab_lock: "Lock", tab_activity: "Activity", tab_settings: "Settings",
+      greet_night: "Good night", greet_morning: "Good morning", greet_afternoon: "Good afternoon", greet_evening: "Good evening",
+      not_paired_again: "This phone is no longer paired. Scan the TV's QR code again.",
+      just_now: "just now", min_ago: "{0} min ago", h_ago: "{0} h ago", days_ago: "{0} days ago",
+      doc_title: "{0} · Remote",
+      st_online: "Online", st_standby: "Standby", st_offline: "Offline", st_offline_ago: "Offline · {0}",
+      st_not_paired: "Not paired", st_checking: "Checking…",
+      phone_offline_title: "This phone is offline",
+      phone_offline_text: "Check Wi-Fi or mobile data. The remote reconnects by itself when the connection is back.",
+      tv_off_title: "The TV is off", tv_offline_title: "The TV is offline",
+      last_seen_text: "Last seen {0}. The controls come back by themselves when it is on.",
+      a_while_ago: "a while ago",
+      tv_back: "The TV is back.", no_picture: "No picture.", no_picture_now: "No picture from the TV right now.",
+      ok_done: "Done.", went_wrong: "Something went wrong.", no_conn: "No connection.",
+      screen_on_done: "Screen on.", screen_off_done: "Screen off.",
+      enter_key_first: "Enter the key first.", saved_on_tv: "Saved on the TV.", bad_key: "Incorrect key.",
+      hold_ok_newer: "Holding OK needs a newer launcher on the TV.", sent: "Sent.",
+      min_n: "{0} min", h_n: "{0} h", h_min: "{0} h {1} min", h_m: "{0} h {1}",
+      report_fail: "Could not load the report.",
+      need_usage: "The TV needs usage access for Screen time (the install script grants it).",
+      all_apps: "All apps", in_7d: "in the last 7 days", today_l: "today", nothing_yet: "Nothing watched yet.",
+      wd_on: "Wireless debugging on", wd_on_ip: "Wireless debugging on · {0}",
+      adb_off_classic: "Off · classic ADB on {0}:5555", wd_off: "Wireless debugging off",
+      switching_on: "Switching on…", switching_off: "Switching off…", adb_on: "ADB on.", adb_off: "ADB off.",
+      perm_read: "Read", perm_read_summary: "Status, info, the TV's apps and screen time",
+      perm_control: "Control", perm_control_summary: "Remote keys, typing, opening apps, power, messages and the lock",
+      perm_adb: "ADB", perm_adb_summary: "Wireless debugging on or off, and its address",
+      perm_adb_warning: "Anyone on the home network who is already paired can then connect.",
+      agent_perms_text: "A new agent may read; control and ADB are switches on each agent (granting them asks for the TV's PIN). Guide for agents: {0}",
+      perm_for: "{0} for {1}", ask_pin: "The TV's PIN, to grant {0} to {1}:",
+      granted: "{0} granted.", taken: "{0} taken away.",
+      used_ago: "Used {0}", not_used: "Not used yet", revoke: "Revoke",
+      revoke_confirm: "Revoke {0}? Its key stops working at once.", revoked: "Revoked.", not_done: "not done",
+      no_https: "This browser can't make a key here (it needs https).", agent_default: "Agent",
+      agent_created: "Agent created.", key_for: "Key for {0}: copy it now",
+      key_copied: "Key copied.", key_selected: "Selected: copy it from the menu.",
+      notify_need_home: "Add to Home Screen first, then switch this on there",
+      notify_cant: "This browser can't show notifications", notify_blocked: "Blocked in the phone's settings",
+      notify_not_allowed: "Notifications were not allowed.", relay_refused: "The relay refused.",
+      notify_on: "Notifications on.", notify_fail: "Could not switch notifications on.", notify_off: "Notifications off.",
+      notify_first: "Switch notifications on first.", notify_both: "You will be told when the TV turns on or off.",
+      notify_on_only: "Only when the TV turns on.", change_fail: "Could not change it.",
+      bad_link: "That is not the TV's pairing link.", type_first: "Type a message first.",
+      shown: "Shown on the TV.", cleared: "Cleared.", locked_done: "Locked.", unlocked_done: "Unlocked.",
+      timer_started: "Timer started.", minutes_range: "1 to 720 minutes.", timer_cancelled: "Timer cancelled.",
+      pin_4: "The PIN is 4 digits.", pin_saved: "PIN saved.",
+      install_ios: "Share › Add to Home Screen opens it like an app", install_hint: "Open the remote like an app",
+    },
+    vi: {
+      unp_title: "Chưa ghép đôi",
+      unp_text: "Trên TV, giữ OK ở nút Wi-Fi trên cùng màn hình chính rồi quét mã QR bằng điện thoại này.",
+      unp_paste: "Hoặc dán link của mã QR (trong camera, giữ vào link rồi sao chép):",
+      pair: "Ghép đôi",
+      connecting_title: "Đang kết nối với TV…",
+      connecting_text: "Các nút điều khiển hiện ra ngay khi TV phản hồi.",
+      live_view: "Xem trực tiếp",
+      a_full: "Toàn màn hình",
+      a_live_toggle: "Hiện hoặc ẩn hình trực tiếp",
+      live_starting: "Đang mở hình trực tiếp…",
+      a_exit_full: "Thoát toàn màn hình",
+      live_hint: "Khoảng hai hình mỗi giây qua relay, mượt hơn trong mạng nhà. Netflix và video có bảo vệ khác, HDMI và truyền hình ăng-ten hiện màu đen.",
+      a_up: "Lên", a_down: "Xuống", a_left: "Trái", a_right: "Phải",
+      a_ok: "OK, giữ để nhấn lâu",
+      a_back: "Quay lại", a_home: "Màn hình chính", a_menu: "Menu", a_mute: "Tắt tiếng",
+      a_vdown: "Giảm âm lượng", a_vup: "Tăng âm lượng", a_kb: "Bàn phím",
+      a_chdown: "Kênh trước", a_chup: "Kênh sau", ch_tag: "CH",
+      keyboard: "Bàn phím", done_btn: "Xong",
+      kb_ph: "Gõ hoặc dán. Chữ hiện ở ô nhập đang chọn trên TV.",
+      enter: "Enter", a_clear: "Xóa",
+      kb_hint: "Chọn một ô nhập chữ trên TV trước. Chữ bạn gõ sẽ thay nội dung ô đó ngay khi gõ.",
+      power: "Nguồn",
+      ip_setup_new: "Các nút này dùng điều khiển IP của TV, hiện chưa được thiết lập. Trên TV:",
+      ip_setup_refused: "TV không nhận khóa điều khiển IP đã lưu. Kiểm tra trên TV rồi nhập lại:",
+      step1: "<b>Cài đặt › Mạng &amp; Internet › Cài đặt thiết bị từ xa › Điều khiển từ xa</b>: Bật.",
+      step2: "<b>Cài đặt › Mạng &amp; Internet › Mạng gia đình › Điều khiển IP › Xác thực</b>: Bình thường và Khóa chia sẻ trước.",
+      step3: "<b>Khóa chia sẻ trước</b> (cùng menu): khóa bất kỳ, ví dụ 4 chữ số.",
+      step4_here: "Nhập đúng khóa đó vào đây.",
+      step4_below: "Nhập đúng khóa đó vào ô bên dưới.",
+      psk_ph: "Khóa chia sẻ trước", save: "Lưu",
+      screen_off: "Tắt màn hình", screen_on: "Bật màn hình", standby: "Chế độ chờ", turn_on: "Bật TV",
+      power_hint: "Tắt màn hình chỉ tắt hình, TV vẫn chạy nên luôn bật lại được. Khi ở chế độ chờ, TV có thể không nhận lệnh Bật TV.",
+      msg_title: "Tin nhắn lên TV", msg_ph: "Cơm xong rồi!", show_on_tv: "Hiện lên TV",
+      a_clear_msg: "Gỡ tin nhắn trên TV",
+      msg_hint: "TV về màn hình chính và hiện tin nhắn chữ lớn đến khi có người bấm OK. Nút ✕ để gỡ tin nhắn.",
+      tv_is: "Trạng thái TV", locked: "Đã khóa", unlocked: "Đã mở khóa", lock: "Khóa TV", unlock: "Mở khóa",
+      no_pin: "Hãy đặt mã PIN 4 số trong Cài đặt trước.",
+      lock_timer: "Hẹn giờ khóa", until_locks: "nữa TV sẽ khóa", cancel_timer: "Hủy hẹn giờ",
+      minutes_ph: "Số phút", start: "Bắt đầu",
+      timer_hint: "TV đếm ngược ở góc màn hình rồi khóa. Mã PIN để mở khóa.",
+      screen_time: "Thời gian xem", today: "Hôm nay", days7: "7 ngày", loading: "Đang tải…",
+      notifications: "Thông báo", notify_hint: "Khi TV bật hoặc tắt",
+      a_notify: "Báo cho tôi khi TV bật hoặc tắt",
+      when_off: "Khi TV tắt", when_off_hint: "Tắt: chỉ báo khi TV bật",
+      a_notify_off: "Báo cả khi TV tắt",
+      add_home: "Thêm vào MH chính", install: "Thêm",
+      pin_title: "Mã PIN", pin_hint: "Mở khóa TV; cũng là mã PIN khóa ứng dụng", pin_ph: "4 chữ số",
+      psk_title: "Khóa điều khiển IP Sony", psk_hint: "Cho Tắt/Bật màn hình, chế độ chờ và các phím điều khiển",
+      adb_default: "Gỡ lỗi không dây", a_adb: "ADB qua mạng",
+      agents: "Trợ lý AI", agents_hint: "Trợ lý như Claude dùng TV này bằng khóa riêng",
+      agent_name_ph: "Tên, ví dụ Claude", create: "Tạo", key_copy_now: "Sao chép khóa ngay",
+      key_once: "Khóa chỉ hiện lần này. Trợ lý gửi khóa qua <b>Authorization: Bearer</b> (hoặc <b>TV_AGENT_KEY</b> cho MCP server).",
+      copy_key: "Sao chép khóa", a_hide_key: "Ẩn khóa", agent_log: "Lệnh gần đây của trợ lý",
+      language: "Ngôn ngữ", language_hint: "Tự động: theo ngôn ngữ của TV", lang_auto: "Tự động (theo TV)",
+      forget_title: "Quên TV này", forget_hint: "Quét lại mã QR để ghép đôi", forget: "Quên",
+      tab_remote: "Điều khiển", tab_message: "Tin nhắn", tab_lock: "Khóa", tab_activity: "Hoạt động", tab_settings: "Cài đặt",
+      greet_night: "Chúc ngủ ngon", greet_morning: "Chào buổi sáng", greet_afternoon: "Chào buổi chiều", greet_evening: "Chào buổi tối",
+      not_paired_again: "Điện thoại này không còn ghép đôi. Hãy quét lại mã QR trên TV.",
+      just_now: "vừa xong", min_ago: "{0} phút trước", h_ago: "{0} giờ trước", days_ago: "{0} ngày trước",
+      doc_title: "{0} · Điều khiển",
+      st_online: "Đã kết nối", st_standby: "Đang chờ", st_offline: "Mất kết nối", st_offline_ago: "Mất kết nối · {0}",
+      st_not_paired: "Chưa ghép đôi", st_checking: "Đang kiểm tra…",
+      phone_offline_title: "Điện thoại đang mất mạng",
+      phone_offline_text: "Kiểm tra Wi-Fi hoặc dữ liệu di động. Điều khiển tự kết nối lại khi có mạng.",
+      tv_off_title: "TV đang tắt", tv_offline_title: "TV mất kết nối",
+      last_seen_text: "Lần cuối thấy TV: {0}. Các nút điều khiển tự hiện lại khi TV bật.",
+      a_while_ago: "khá lâu rồi",
+      tv_back: "TV đã kết nối lại.", no_picture: "Không có hình.", no_picture_now: "Chưa nhận được hình từ TV.",
+      ok_done: "Xong.", went_wrong: "Có lỗi xảy ra.", no_conn: "Không có kết nối.",
+      screen_on_done: "Đã bật màn hình.", screen_off_done: "Đã tắt màn hình.",
+      enter_key_first: "Hãy nhập khóa trước.", saved_on_tv: "Đã lưu trên TV.", bad_key: "Khóa không đúng.",
+      hold_ok_newer: "Giữ OK cần launcher mới hơn trên TV.", sent: "Đã gửi.",
+      min_n: "{0} phút", h_n: "{0} giờ", h_min: "{0} giờ {1} phút", h_m: "{0} giờ {1}",
+      report_fail: "Không tải được báo cáo.",
+      need_usage: "TV cần quyền truy cập dữ liệu sử dụng cho Thời gian xem (script cài đặt sẽ cấp quyền này).",
+      all_apps: "Tất cả ứng dụng", in_7d: "trong 7 ngày qua", today_l: "hôm nay", nothing_yet: "Chưa xem gì.",
+      wd_on: "Đang bật gỡ lỗi không dây", wd_on_ip: "Đang bật gỡ lỗi không dây · {0}",
+      adb_off_classic: "Tắt · ADB thường ở {0}:5555", wd_off: "Đã tắt gỡ lỗi không dây",
+      switching_on: "Đang bật…", switching_off: "Đang tắt…", adb_on: "Đã bật ADB.", adb_off: "Đã tắt ADB.",
+      perm_read: "Xem", perm_read_summary: "Trạng thái, thông tin, ứng dụng và thời gian xem của TV",
+      perm_control: "Điều khiển", perm_control_summary: "Phím điều khiển, gõ chữ, mở ứng dụng, nguồn, tin nhắn và khóa TV",
+      perm_adb: "ADB", perm_adb_summary: "Bật hoặc tắt gỡ lỗi không dây, và địa chỉ của nó",
+      perm_adb_warning: "Khi đó, ai trong mạng nhà đã ghép đôi trước đều có thể kết nối.",
+      agent_perms_text: "Trợ lý mới chỉ được xem; Điều khiển và ADB là công tắc trên từng trợ lý (cấp quyền cần mã PIN của TV). Hướng dẫn cho trợ lý: {0}",
+      perm_for: "{0} cho {1}", ask_pin: "Mã PIN của TV, để cấp quyền {0} cho {1}:",
+      granted: "Đã cấp quyền {0}.", taken: "Đã thu hồi quyền {0}.",
+      used_ago: "Dùng {0}", not_used: "Chưa dùng", revoke: "Thu hồi",
+      revoke_confirm: "Thu hồi {0}? Khóa của trợ lý này ngừng hoạt động ngay.", revoked: "Đã thu hồi.", not_done: "không thực hiện được",
+      no_https: "Trình duyệt này không tạo được khóa ở đây (cần https).", agent_default: "Trợ lý",
+      agent_created: "Đã tạo trợ lý.", key_for: "Khóa của {0}: sao chép ngay",
+      key_copied: "Đã sao chép khóa.", key_selected: "Đã chọn: hãy sao chép từ menu.",
+      notify_need_home: "Thêm vào MH chính trước, rồi bật mục này ở đó",
+      notify_cant: "Trình duyệt này không hiện được thông báo", notify_blocked: "Đang bị chặn trong cài đặt điện thoại",
+      notify_not_allowed: "Chưa cho phép thông báo.", relay_refused: "Relay từ chối.",
+      notify_on: "Đã bật thông báo.", notify_fail: "Không bật được thông báo.", notify_off: "Đã tắt thông báo.",
+      notify_first: "Hãy bật thông báo trước.", notify_both: "Bạn sẽ được báo khi TV bật hoặc tắt.",
+      notify_on_only: "Chỉ báo khi TV bật.", change_fail: "Không đổi được.",
+      bad_link: "Đây không phải link ghép đôi của TV.", type_first: "Hãy nhập tin nhắn trước.",
+      shown: "Đã hiện lên TV.", cleared: "Đã gỡ.", locked_done: "Đã khóa TV.", unlocked_done: "Đã mở khóa.",
+      timer_started: "Đã hẹn giờ khóa.", minutes_range: "Từ 1 đến 720 phút.", timer_cancelled: "Đã hủy hẹn giờ.",
+      pin_4: "Mã PIN gồm 4 chữ số.", pin_saved: "Đã lưu mã PIN.",
+      install_ios: "Chia sẻ › Thêm vào MH chính để mở như ứng dụng", install_hint: "Mở điều khiển như một ứng dụng",
+    },
+    zh: {
+      unp_title: "尚未配对",
+      unp_text: "在电视主屏幕顶部的 Wi-Fi 按钮上长按 OK，然后用这部手机扫描二维码。",
+      unp_paste: "或粘贴二维码中的链接（在相机中长按链接并复制）：",
+      pair: "配对",
+      connecting_title: "正在连接电视…",
+      connecting_text: "电视一响应，控制按钮就会出现。",
+      live_view: "实时画面",
+      a_full: "全屏",
+      a_live_toggle: "显示或隐藏实时画面",
+      live_starting: "正在开启实时画面…",
+      a_exit_full: "退出全屏",
+      live_hint: "经中继每秒约两帧，在家庭网络中更流畅。Netflix 等受保护的视频、HDMI 和电视调谐器显示为黑屏。",
+      a_up: "上", a_down: "下", a_left: "左", a_right: "右",
+      a_ok: "确定，按住为长按",
+      a_back: "返回", a_home: "主页", a_menu: "菜单", a_mute: "静音",
+      a_vdown: "音量减", a_vup: "音量加", a_kb: "键盘",
+      a_chdown: "频道减", a_chup: "频道加", ch_tag: "频道",
+      keyboard: "键盘", done_btn: "完成",
+      kb_ph: "输入或粘贴，文字会出现在电视上选中的输入框中。",
+      enter: "回车", a_clear: "清除",
+      kb_hint: "请先在电视上选中一个输入框。输入的内容会实时替换框中的文字。",
+      power: "电源",
+      ip_setup_new: "这些功能使用电视的 IP 控制，目前尚未设置。在电视上：",
+      ip_setup_refused: "电视拒绝了已保存的 IP 控制密钥。请在电视上核对后重新输入：",
+      step1: "<b>设置 › 网络和互联网 › 远程设备设置 › 远程控制</b>：开启。",
+      step2: "<b>设置 › 网络和互联网 › 家庭网络 › IP 控制 › 认证</b>：常规和预共享密钥。",
+      step3: "<b>预共享密钥</b>（同一菜单）：任意密钥，例如 4 位数字。",
+      step4_here: "在这里输入同一密钥。",
+      step4_below: "在下方输入同一密钥。",
+      psk_ph: "预共享密钥", save: "保存",
+      screen_off: "关闭屏幕", screen_on: "打开屏幕", standby: "待机", turn_on: "开机",
+      power_hint: "关闭屏幕只关掉画面，电视仍在运行，所以随时可以打开屏幕。待机时电视可能收不到开机指令。",
+      msg_title: "在电视上显示消息", msg_ph: "开饭啦！", show_on_tv: "在电视上显示",
+      a_clear_msg: "清除电视上的消息",
+      msg_hint: "电视会回到主页并以大字显示消息，直到有人按 OK。按 ✕ 可撤下消息。",
+      tv_is: "电视状态", locked: "已锁定", unlocked: "未锁定", lock: "锁定", unlock: "解锁",
+      no_pin: "请先在设置中设定 4 位 PIN。",
+      lock_timer: "定时锁定", until_locks: "后电视将锁定", cancel_timer: "取消定时",
+      minutes_ph: "分钟数", start: "开始",
+      timer_hint: "电视会在角落倒计时，然后锁定。用 PIN 解锁。",
+      screen_time: "屏幕使用时间", today: "今天", days7: "7 天", loading: "加载中…",
+      notifications: "通知", notify_hint: "电视开机或关机时",
+      a_notify: "电视开机或关机时通知我",
+      when_off: "关机时", when_off_hint: "关闭：只在电视开机时通知",
+      a_notify_off: "电视关机时也通知我",
+      add_home: "添加到主屏幕", install: "安装",
+      pin_title: "PIN", pin_hint: "用于解锁电视，也是应用锁的 PIN", pin_ph: "4 位数字",
+      psk_title: "Sony IP 控制密钥", psk_hint: "用于关闭/打开屏幕、待机和遥控按键",
+      adb_default: "无线调试", a_adb: "通过网络使用 ADB",
+      agents: "AI 助手", agents_hint: "Claude 等助手用自己的密钥使用这台电视",
+      agent_name_ph: "名称，例如 Claude", create: "创建", key_copy_now: "请立即复制密钥",
+      key_once: "密钥只显示这一次。助手以 <b>Authorization: Bearer</b> 发送（MCP 服务器则用 <b>TV_AGENT_KEY</b>）。",
+      copy_key: "复制密钥", a_hide_key: "隐藏密钥", agent_log: "助手最近的指令",
+      language: "语言", language_hint: "自动：跟随电视的语言", lang_auto: "自动（跟随电视）",
+      forget_title: "忘记这台电视", forget_hint: "重新扫描二维码即可配对", forget: "忘记",
+      tab_remote: "遥控", tab_message: "消息", tab_lock: "锁定", tab_activity: "活动", tab_settings: "设置",
+      greet_night: "晚安", greet_morning: "早上好", greet_afternoon: "下午好", greet_evening: "晚上好",
+      not_paired_again: "这部手机已不再配对。请重新扫描电视上的二维码。",
+      just_now: "刚刚", min_ago: "{0} 分钟前", h_ago: "{0} 小时前", days_ago: "{0} 天前",
+      doc_title: "{0} · 遥控器",
+      st_online: "在线", st_standby: "待机", st_offline: "离线", st_offline_ago: "离线 · {0}",
+      st_not_paired: "未配对", st_checking: "正在检查…",
+      phone_offline_title: "这部手机已断网",
+      phone_offline_text: "请检查 Wi-Fi 或移动数据。网络恢复后遥控器会自动重新连接。",
+      tv_off_title: "电视已关机", tv_offline_title: "电视已离线",
+      last_seen_text: "最后在线：{0}。电视开机后控制按钮会自动恢复。",
+      a_while_ago: "一段时间前",
+      tv_back: "电视已重新连接。", no_picture: "没有画面。", no_picture_now: "暂时收不到电视的画面。",
+      ok_done: "完成。", went_wrong: "出错了。", no_conn: "没有网络连接。",
+      screen_on_done: "屏幕已打开。", screen_off_done: "屏幕已关闭。",
+      enter_key_first: "请先输入密钥。", saved_on_tv: "已保存到电视。", bad_key: "密钥不正确。",
+      hold_ok_newer: "长按 OK 需要电视上较新版本的启动器。", sent: "已发送。",
+      min_n: "{0} 分钟", h_n: "{0} 小时", h_min: "{0} 小时 {1} 分钟", h_m: "{0} 小时 {1} 分",
+      report_fail: "无法加载报告。",
+      need_usage: "屏幕使用时间需要电视的使用情况访问权限（安装脚本会授予）。",
+      all_apps: "所有应用", in_7d: "过去 7 天", today_l: "今天", nothing_yet: "还没有观看记录。",
+      wd_on: "无线调试已开启", wd_on_ip: "无线调试已开启 · {0}",
+      adb_off_classic: "关闭 · 经典 ADB 在 {0}:5555", wd_off: "无线调试已关闭",
+      switching_on: "正在开启…", switching_off: "正在关闭…", adb_on: "ADB 已开启。", adb_off: "ADB 已关闭。",
+      perm_read: "读取", perm_read_summary: "状态、信息、电视的应用和屏幕使用时间",
+      perm_control: "控制", perm_control_summary: "遥控按键、输入文字、打开应用、电源、消息和锁定",
+      perm_adb: "ADB", perm_adb_summary: "开启或关闭无线调试，以及其地址",
+      perm_adb_warning: "家庭网络中任何已配对过的设备随后都能连接。",
+      agent_perms_text: "新助手只能读取；控制和 ADB 是每个助手上的开关（授予时需要电视的 PIN）。助手指南：{0}",
+      perm_for: "{1} 的{0}权限", ask_pin: "输入电视的 PIN，以授予 {1} {0}权限：",
+      granted: "已授予{0}权限。", taken: "已收回{0}权限。",
+      used_ago: "上次使用：{0}", not_used: "尚未使用", revoke: "撤销",
+      revoke_confirm: "撤销 {0}？其密钥会立即失效。", revoked: "已撤销。", not_done: "未完成",
+      no_https: "此浏览器无法在这里生成密钥（需要 https）。", agent_default: "助手",
+      agent_created: "助手已创建。", key_for: "{0} 的密钥：请立即复制",
+      key_copied: "密钥已复制。", key_selected: "已选中：请从菜单中复制。",
+      notify_need_home: "请先添加到主屏幕，再从那里开启",
+      notify_cant: "此浏览器无法显示通知", notify_blocked: "已在手机设置中被屏蔽",
+      notify_not_allowed: "未允许通知。", relay_refused: "中继拒绝了请求。",
+      notify_on: "通知已开启。", notify_fail: "无法开启通知。", notify_off: "通知已关闭。",
+      notify_first: "请先开启通知。", notify_both: "电视开机或关机时都会通知你。",
+      notify_on_only: "只在电视开机时通知。", change_fail: "无法更改。",
+      bad_link: "这不是电视的配对链接。", type_first: "请先输入消息。",
+      shown: "已在电视上显示。", cleared: "已清除。", locked_done: "已锁定。", unlocked_done: "已解锁。",
+      timer_started: "定时已开始。", minutes_range: "1 到 720 分钟。", timer_cancelled: "定时已取消。",
+      pin_4: "PIN 为 4 位数字。", pin_saved: "PIN 已保存。",
+      install_ios: "分享 › 添加到主屏幕，即可像应用一样打开", install_hint: "像应用一样打开遥控器",
+    },
+  };
+  // A BCP-47 tag (the TV's Locale.toLanguageTag(), the phone's navigator.languages) to a language of the page.
+  function langOf(tag) {
+    const s = String(tag || "").toLowerCase();
+    if (/^vi([-_]|$)/.test(s)) return "vi";
+    if (/^zh([-_]|$)/.test(s)) return "zh";
+    if (/^en([-_]|$)/.test(s)) return "en";
+    return "";
+  }
+  // First match wins: the choice made in Settings, the TV's language, the phone's languages, English.
+  function pickLang(saved, tvLang, phoneLangs) {
+    if (saved && T[saved]) return saved;
+    const fromTv = langOf(tvLang);
+    if (fromTv) return fromTv;
+    for (const l of phoneLangs || []) { const p = langOf(l); if (p) return p; }
+    return "en";
+  }
+  // ---- i18n (end) ----------------------------------------------------------------------------------
+  const LANG = "tvremote-lang", TV_LANG = "tvremote-tvlang";
+  let savedLang = "", tvLang = "";
+  try { savedLang = localStorage.getItem(LANG) || ""; tvLang = localStorage.getItem(TV_LANG) || ""; } catch (e) {}
+  const phoneLangs = () => navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+  let lang = pickLang(savedLang, tvLang, phoneLangs());
+  function t(key, ...args) {
+    const s = (T[lang] && T[lang][key]) || T.en[key] || key;
+    return s.replace(/[{]([0-9])[}]/g, (m, i) => String(args[+i]));
+  }
+  // Text that changes with the state keeps its key on the element, so a language switch redraws it too.
+  function setT(e, key, ...args) {
+    e.dataset.i18n = key;
+    if (args.length) e.dataset.i18nArgs = JSON.stringify(args); else delete e.dataset.i18nArgs;
+    e.textContent = t(key, ...args);
+  }
+  function setRaw(e, text) { delete e.dataset.i18n; delete e.dataset.i18nArgs; e.textContent = text; }
+  function applyI18n() {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+    document.querySelectorAll("[data-i18n]").forEach((e) => {
+      let a = [];
+      try { a = JSON.parse(e.dataset.i18nArgs || "[]"); } catch (err) {}
+      e.textContent = t(e.dataset.i18n, ...a);
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach((e) => (e.innerHTML = t(e.dataset.i18nHtml)));
+    ["placeholder", "title", "aria-label"].forEach((attr) => document.querySelectorAll("[data-i18n-" + attr + "]")
+      .forEach((e) => e.setAttribute(attr, t(e.getAttribute("data-i18n-" + attr)))));
+    document.querySelectorAll("#langPick button").forEach((b) => b.classList.toggle("white", b.dataset.lang === savedLang));
+  }
+  applyI18n();
 
   // ---- icons (stroke icons, 24 px grid) ------------------------------------------------------------
   const SPK = '<path d="M11 5 6 9H3v6h3l5 4z"/>';
@@ -518,6 +894,7 @@ export const PAGE = `<!doctype html>
     terminal: '<rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m7 9 3 3-3 3M13 15h4"/>',
     tvoff: '<rect x="2" y="5" width="20" height="13" rx="2.5"/><path d="M8 21h8M9 9l6 5M15 9l-6 5"/>',
     bot: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
     copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/>',
   };
   function icon(e) {
@@ -556,7 +933,7 @@ export const PAGE = `<!doctype html>
   try { greetName = localStorage.getItem("tvremote-greet") || ""; } catch (e) {}
   function drawGreeting() {
     const h = new Date().getHours();
-    const g = h < 5 ? "Good night" : h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : h < 22 ? "Good evening" : "Good night";
+    const g = t(h < 5 ? "greet_night" : h < 12 ? "greet_morning" : h < 17 ? "greet_afternoon" : h < 22 ? "greet_evening" : "greet_night");
     $("greeting").textContent = (greetName ? g + ", " + greetName : g) + " 👋";
   }
   drawGreeting();
@@ -564,33 +941,39 @@ export const PAGE = `<!doctype html>
 
   let toastTimer;
   function toast(msg, bad) {
-    const t = $("toast");
-    t.textContent = msg;
-    t.className = "show" + (bad ? " bad" : "");
+    const box = $("toast");
+    box.textContent = msg;
+    box.className = "show" + (bad ? " bad" : "");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => (t.className = ""), 2600);
+    toastTimer = setTimeout(() => (box.className = ""), 2600);
   }
 
   async function post(path, extra) {
     const r = await fetch(path, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(Object.assign({ id: tv.id, key: tv.key }, extra)) });
     let j = {};
     try { j = await r.json(); } catch (e) {}
-    if (r.status === 403) j.msg = "This phone is no longer paired. Scan the TV's QR code again.";
+    if (r.status === 403) j.msg = t("not_paired_again");
     return j;
   }
 
   // ---- status ---------------------------------------------------------------------------------
-  let online = null, lockAt = 0, lastSeen = 0, tvHasPin = false;
-  function ago(t) {
-    if (!t) return "";
-    const s = Math.max(0, Math.round((Date.now() - t) / 1000));
-    if (s < 90) return "just now";
-    if (s < 5400) return Math.round(s / 60) + " min ago";
-    if (s < 129600) return Math.round(s / 3600) + " h ago";
-    return Math.round(s / 86400) + " days ago";
+  let online = null, lockAt = 0, lastSeen = 0, tvHasPin = false, lastPower = null, tvName = "";
+  function ago(when) {
+    if (!when) return "";
+    const s = Math.max(0, Math.round((Date.now() - when) / 1000));
+    if (s < 90) return t("just_now");
+    if (s < 5400) return t("min_ago", Math.round(s / 60));
+    if (s < 129600) return t("h_ago", Math.round(s / 3600));
+    return t("days_ago", Math.round(s / 86400));
   }
   function applyStatus(st) {
-    if (st.name) { $("title").textContent = st.name; document.title = st.name + " · Remote"; }
+    // The TV's language (an older launcher sends none): the page follows it unless a language was chosen here.
+    if (typeof st.lang === "string" && st.lang && st.lang !== tvLang) {
+      tvLang = st.lang;
+      try { localStorage.setItem(TV_LANG, tvLang); } catch (e) {}
+      relang();
+    }
+    if (st.name) { tvName = st.name; $("title").textContent = st.name; document.title = t("doc_title", st.name); }
     if (st.lastSeen) lastSeen = st.lastSeen;
     setLock(st.state);
     setOnline(!!st.online, st.power);
@@ -598,28 +981,35 @@ export const PAGE = `<!doctype html>
   function setOnline(on, power) {
     const was = online;
     online = on;
+    lastPower = power;
     // On: no Turn on. Standby (screen off, still connected): no Standby, a green Turn on instead.
     const standby = on && power === "off";
     $("btnStandby").hidden = standby;
     $("btnWake").hidden = !standby;
     $("status").className = "status " + (on ? (power === "off" ? "standby" : "on") : "off");
-    $("statusText").textContent = on ? (power === "off" ? "Standby" : "Online") : "Offline" + (lastSeen ? " · " + ago(lastSeen) : "");
+    drawStatus();
     document.body.classList.toggle("tv-off", !on);
     $("offlineCard").hidden = on || tab === "settings";
-    if (!on && !navigator.onLine) {
-      $("offlineTitle").textContent = "This phone is offline";
-      $("offlineText").textContent = "Check Wi-Fi or mobile data. The remote reconnects by itself when the connection is back.";
-    } else if (!on) {
-      $("offlineTitle").textContent = power === "off" ? "The TV is off" : "The TV is offline";
-      $("offlineText").textContent = "Last seen " + (ago(lastSeen) || "a while ago") + ". The controls come back by themselves when it is on.";
-    }
-    if (on && was === false) { toast("The TV is back."); loadReport(); loadInfo(); }
+    if (on && was === false) { toast(t("tv_back")); loadReport(); loadInfo(); }
     if (on !== was) setLive(tab === "remote");
     if (on && was === null) { loadReport(); loadInfo(); }
   }
+  function drawStatus() {
+    const on = online, power = lastPower;
+    if (on) setT($("statusText"), power === "off" ? "st_standby" : "st_online");
+    else if (lastSeen) setT($("statusText"), "st_offline_ago", ago(lastSeen));
+    else setT($("statusText"), "st_offline");
+    if (!on && !navigator.onLine) {
+      setT($("offlineTitle"), "phone_offline_title");
+      setT($("offlineText"), "phone_offline_text");
+    } else if (!on) {
+      setT($("offlineTitle"), power === "off" ? "tv_off_title" : "tv_offline_title");
+      setT($("offlineText"), "last_seen_text", ago(lastSeen) || t("a_while_ago"));
+    }
+  }
   function setLock(st) {
     if (!st) return;
-    $("lockBadge").textContent = st.locked ? "Locked" : "Unlocked";
+    setT($("lockBadge"), st.locked ? "locked" : "unlocked");
     $("lockFace").classList.toggle("locked", !!st.locked);
     setIcon($("lockIcon"), st.locked ? "lock" : "unlock");
     $("noPin").hidden = !!st.hasPin;
@@ -638,7 +1028,7 @@ export const PAGE = `<!doctype html>
   }
   setInterval(drawTimer, 1000);
   // Offline: keep "· 5 min ago" current. A tap on the pill checks again now.
-  setInterval(() => { if (online === false) $("statusText").textContent = "Offline" + (lastSeen ? " · " + ago(lastSeen) : ""); }, 30000);
+  setInterval(() => { if (online === false) drawStatus(); }, 30000);
 
   // Live status over a WebSocket; the key goes in the first message, not in the address.
   let sock = null, backoff = 1000, pinger = null;
@@ -660,8 +1050,8 @@ export const PAGE = `<!doctype html>
       let msg;
       try { msg = JSON.parse(e.data); } catch (err) { return; }
       if (msg.t === "status") applyStatus(msg);
-      if (msg.t === "live_error") $("liveMsg").textContent = msg.msg || "No picture.";
-      if (msg.t === "unpaired") toast("This phone is no longer paired. Scan the TV's QR code again.", true);
+      if (msg.t === "live_error") { if (msg.msg) setRaw($("liveMsg"), msg.msg); else setT($("liveMsg"), "no_picture"); }
+      if (msg.t === "unpaired") toast(t("not_paired_again"), true);
     };
     ws.onclose = () => {
       clearInterval(pinger);
@@ -680,11 +1070,11 @@ export const PAGE = `<!doctype html>
     try {
       const j = await post("/api/cmd", Object.assign({ cmd: cmd }, opts || {}));
       setLock(j.state);
-      if (j.ok) { if (okMsg !== null) toast(j.msg || okMsg || "Done."); }
-      else { toast(j.msg || j.error || "Something went wrong.", true); if (j.offline) setOnline(false); }
+      if (j.ok) { if (okMsg !== null) toast(j.msg || okMsg || t("ok_done")); }
+      else { toast(j.msg || j.error || t("went_wrong"), true); if (j.offline) setOnline(false); }
       return j;
     } catch (e) {
-      toast("No connection.", true);
+      toast(t("no_conn"), true);
       return {};
     } finally { if (btn) btn.disabled = false; }
   }
@@ -698,9 +1088,7 @@ export const PAGE = `<!doctype html>
     if (tab === "settings") loadAgents();
     $("ipSetup").hidden = !!j.data.ipControl;
     if (j.data.ipControl) loadPicture();
-    $("ipSetupText").textContent = j.data.ipKeySaved
-      ? "The TV refuses the saved IP control key. Check it on the TV and enter it again:"
-      : "These use the TV's IP control, which isn't set up yet. On the TV:";
+    setT($("ipSetupText"), j.data.ipKeySaved ? "ip_setup_refused" : "ip_setup_new");
     const st = await run("local", { args: { method: "GET", path: "/api/state" } }, null);
     if (st.ok && st.data && typeof st.data.greeting === "string") {
       greetName = st.data.greeting.trim();
@@ -712,7 +1100,7 @@ export const PAGE = `<!doctype html>
   let pictureOff = false;
   function drawPicture() {
     setIcon($("pictureIcon"), pictureOff ? "screen" : "screenoff");
-    $("pictureLabel").textContent = pictureOff ? "Screen on" : "Screen off";
+    setT($("pictureLabel"), pictureOff ? "screen_on" : "screen_off");
     $("btnPicture").classList.toggle("green", pictureOff);
   }
   async function loadPicture() {
@@ -720,36 +1108,47 @@ export const PAGE = `<!doctype html>
     if (j.ok && Array.isArray(j.data) && j.data[0]) { pictureOff = j.data[0].mode === "pictureOff"; drawPicture(); }
   }
   $("btnPicture").onclick = async (e) => {
-    const j = await run(pictureOff ? "screen_on" : "screen_off", {}, pictureOff ? "Screen on." : "Screen off.", e.currentTarget);
+    const j = await run(pictureOff ? "screen_on" : "screen_off", {}, t(pictureOff ? "screen_on_done" : "screen_off_done"), e.currentTarget);
     if (j.ok) { pictureOff = !pictureOff; drawPicture(); }
   };
 
   async function savePsk(input, btn) {
-    if (!input.value.trim()) { toast("Enter the key first.", true); return; }
+    if (!input.value.trim()) { toast(t("enter_key_first"), true); return; }
     btn.disabled = true;
-    const j = await post("/api/cmd", { cmd: "set_psk", text: input.value }).catch(() => ({ msg: "No connection." }));
+    const j = await post("/api/cmd", { cmd: "set_psk", text: input.value }).catch(() => ({ msg: t("no_conn") }));
     btn.disabled = false;
     // The TV says "refused the IP control key" for a wrong key: say it plainly.
-    if (j.ok) toast(j.msg || "Saved on the TV.");
-    else toast(/refuse/i.test(j.msg || "") ? "Incorrect key." : j.msg || j.error || "Something went wrong.", true);
+    if (j.ok) toast(j.msg || t("saved_on_tv"));
+    else toast(/refuse/i.test(j.msg || "") ? t("bad_key") : j.msg || j.error || t("went_wrong"), true);
     if (j.ok) { input.value = ""; $("ipSetup").hidden = true; }
     else loadInfo();
   }
 
   // ---- tabs ---------------------------------------------------------------------------------------
   let tab = "remote";
-  function showTab(t) {
-    tab = t;
-    document.querySelectorAll("#tabs button").forEach((b) => b.classList.toggle("sel", b.dataset.tab === t));
-    document.querySelectorAll(".tab").forEach((p) => (p.hidden = p.id !== "tab-" + t));
-    $("offlineCard").hidden = online === true || t === "settings";
-    setLive(t === "remote");
-    if (t === "activity") loadReport();
-    if (t === "settings") { loadAdb(); loadAgents(); }
+  function showTab(name) {
+    tab = name;
+    document.querySelectorAll("#tabs button").forEach((b) => b.classList.toggle("sel", b.dataset.tab === name));
+    document.querySelectorAll(".tab").forEach((p) => (p.hidden = p.id !== "tab-" + name));
+    $("offlineCard").hidden = online === true || name === "settings";
+    setLive(name === "remote");
+    if (name === "activity") loadReport();
+    if (name === "settings") { loadAdb(); loadAgents(); }
     window.scrollTo(0, 0);
-    try { sessionStorage.setItem("tvremote-tab", t); } catch (e) {}
+    try { sessionStorage.setItem("tvremote-tab", name); } catch (e) {}
   }
   document.querySelectorAll("#tabs button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
+
+  // A language switch (chosen here, or the TV's changed): every marked text, then what is drawn from state.
+  function relang() {
+    lang = pickLang(savedLang, tvLang, phoneLangs());
+    applyI18n();
+    drawGreeting();
+    if (tvName) document.title = t("doc_title", tvName);
+    if (online !== null) drawStatus();
+    if (report) drawReport();
+    if (lastAgents) drawAgents(lastAgents);
+  }
 
   // ---- live view and remote keys -------------------------------------------------------------------
   // Over the relay about 2 pictures a second; straight from the TV on the home network (the TV serves this page
@@ -795,7 +1194,7 @@ export const PAGE = `<!doctype html>
     on = on && liveShown && !document.hidden && online !== false;
     if (on === liveOn) return;
     liveOn = on;
-    if (on) { $("liveMsg").textContent = "Starting the live view…"; $("liveMsg").hidden = false; lastFrameAt = 0; }
+    if (on) { setT($("liveMsg"), "live_starting"); $("liveMsg").hidden = false; lastFrameAt = 0; }
     if (sock && sock.readyState === 1) sock.send(JSON.stringify({ t: "live", on: on, fps: LIVE_FPS }));
   }
   function showFrame(blob) {
@@ -808,7 +1207,7 @@ export const PAGE = `<!doctype html>
     $("liveMsg").hidden = true;
   }
   setInterval(() => {
-    if (liveOn && lastFrameAt && Date.now() - lastFrameAt > 8000) { $("liveMsg").hidden = false; $("liveMsg").textContent = "No picture from the TV right now."; }
+    if (liveOn && lastFrameAt && Date.now() - lastFrameAt > 8000) { $("liveMsg").hidden = false; setT($("liveMsg"), "no_picture_now"); }
   }, 2000);
 
   // One press at a time (a press waits for the last one); holding repeats where it makes sense.
@@ -842,7 +1241,7 @@ export const PAGE = `<!doctype html>
         timer = null;
         held = true;
         if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
-        if (caps && caps.indexOf("longpress") < 0) { toast("Holding OK needs a newer launcher on the TV.", true); return; }
+        if (caps && caps.indexOf("longpress") < 0) { toast(t("hold_ok_newer"), true); return; }
         pressing = pressing.then(() => run("longpress", {}, null)).catch(() => {});
       }, 600);
     });
@@ -859,7 +1258,7 @@ export const PAGE = `<!doctype html>
   let typeTimer = null, typing = Promise.resolve();
   function sendText(enter) {
     const text = $("kbText").value;
-    typing = typing.then(() => run("type", { args: { text: text, enter: !!enter } }, enter ? "Sent." : null)).catch(() => {});
+    typing = typing.then(() => run("type", { args: { text: text, enter: !!enter } }, enter ? t("sent") : null)).catch(() => {});
   }
   $("kbOpen").onclick = () => { $("kb").hidden = false; $("kbText").focus(); $("kb").scrollIntoView({ block: "start", behavior: "smooth" }); };
   $("kbClose").onclick = () => { $("kb").hidden = true; $("kbText").blur(); };
@@ -871,8 +1270,8 @@ export const PAGE = `<!doctype html>
   let range = "today";
   function hm(ms) {
     const min = Math.round(ms / 60000);
-    if (min < 60) return min + " min";
-    return Math.floor(min / 60) + " h" + (min % 60 ? " " + (min % 60) + " min" : "");
+    if (min < 60) return t("min_n", min);
+    return min % 60 ? t("h_min", Math.floor(min / 60), min % 60) : t("h_n", Math.floor(min / 60));
   }
   function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
   // The report: the total and its chart, or one app's when its row is tapped (as on the TV).
@@ -881,7 +1280,7 @@ export const PAGE = `<!doctype html>
     if (!online || tab !== "activity") return;
     const j = await run("local", { args: { method: "GET", path: "/api/report" + (range === "7d" ? "?range=7d" : "") } }, null);
     const box = $("stBody");
-    if (!j.ok) { box.textContent = ""; box.appendChild(el("p", "hint", j.msg || "Could not load the report.")); return; }
+    if (!j.ok) { box.textContent = ""; box.appendChild(el("p", "hint", j.msg || t("report_fail"))); return; }
     report = j.data || {};
     if (picked && !(report.apps || []).some((a) => a.name === picked)) picked = null;
     drawReport();
@@ -890,7 +1289,7 @@ export const PAGE = `<!doctype html>
     const box = $("stBody");
     box.textContent = "";
     const r = report || {};
-    if (!r.allowed) { box.appendChild(el("p", "hint", "The TV needs usage access for Screen time (the install script grants it).")); return; }
+    if (!r.allowed) { box.appendChild(el("p", "hint", t("need_usage"))); return; }
     const apps = r.apps || [];
     const app = picked ? apps.find((a) => a.name === picked) : null;
     const total = app ? app.ms : r.total || 0;
@@ -899,16 +1298,16 @@ export const PAGE = `<!doctype html>
 
     const head = el("div", "st-head");
     const left = el("div");
-    left.appendChild(el("div", "eyebrow", app ? app.name : "All apps"));
+    left.appendChild(el("div", "eyebrow", app ? app.name : t("all_apps")));
     left.appendChild(el("div", "total", hm(total)));
     head.appendChild(left);
     if (app) {
-      const back = el("button", "pill sm", "All apps");
+      const back = el("button", "pill sm", t("all_apps"));
       back.onclick = () => { picked = null; drawReport(); };
       head.appendChild(back);
     }
     box.appendChild(head);
-    box.appendChild(el("p", "hint", range === "7d" ? "in the last 7 days" : "today")).style.marginTop = "6px";
+    box.appendChild(el("p", "hint", t(range === "7d" ? "in_7d" : "today_l"))).style.marginTop = "6px";
 
     const max = Math.max(1, ...buckets);
     const chart = el("div", "chart");
@@ -941,21 +1340,21 @@ export const PAGE = `<!doctype html>
       const top = Math.max(1, apps[0].ms);
       apps.forEach((a) => {
         const row = el("button", "app" + (a.name === picked ? " sel" : ""));
-        const t = el("div", "top");
-        t.appendChild(el("span", "", a.name));
-        t.appendChild(el("span", "", hm(a.ms)));
+        const top2 = el("div", "top");
+        top2.appendChild(el("span", "", a.name));
+        top2.appendChild(el("span", "", hm(a.ms)));
         const bar = el("div", "bar");
         const fill = el("i");
         fill.style.width = Math.max(2, Math.round((a.ms / top) * 100)) + "%";
         bar.appendChild(fill);
-        row.appendChild(t);
+        row.appendChild(top2);
         row.appendChild(bar);
         row.onclick = () => { picked = a.name === picked ? null : a.name; drawReport(); };
         list.appendChild(row);
       });
       box.appendChild(list);
     } else if (!r.total) {
-      box.appendChild(el("p", "hint", "Nothing watched yet."));
+      box.appendChild(el("p", "hint", t("nothing_yet")));
     }
   }
   document.querySelectorAll("#range button").forEach((b) => (b.onclick = () => {
@@ -967,9 +1366,11 @@ export const PAGE = `<!doctype html>
   // ---- ADB (Wireless debugging) ----------------------------------------------------------------------
   function drawAdb(d) {
     $("adbSwitch").checked = !!d.wifi;
-    $("adbHint").textContent = d.wifi
-      ? (d.ip && d.port ? "adb connect " + d.ip + ":" + d.port : "Wireless debugging on" + (d.ip ? " · " + d.ip : ""))
-      : d.tcp5555 && d.ip ? "Off · classic ADB on " + d.ip + ":5555" : "Wireless debugging off";
+    const h = $("adbHint");
+    if (d.wifi && d.ip && d.port) setRaw(h, "adb connect " + d.ip + ":" + d.port);
+    else if (d.wifi) { if (d.ip) setT(h, "wd_on_ip", d.ip); else setT(h, "wd_on"); }
+    else if (d.tcp5555 && d.ip) setT(h, "adb_off_classic", d.ip);
+    else setT(h, "wd_off");
   }
   async function loadAdb() {
     if (!online) return;
@@ -981,8 +1382,8 @@ export const PAGE = `<!doctype html>
   $("adbSwitch").onchange = async (e) => {
     const box = e.currentTarget;
     box.disabled = true;
-    $("adbHint").textContent = box.checked ? "Switching on…" : "Switching off…";
-    const j = await run("adb", { args: { action: box.checked ? "on" : "off" } }, box.checked ? "ADB on." : "ADB off.");
+    setT($("adbHint"), box.checked ? "switching_on" : "switching_off");
+    const j = await run("adb", { args: { action: box.checked ? "on" : "off" } }, t(box.checked ? "adb_on" : "adb_off"));
     box.disabled = false;
     if (j.ok && j.data) drawAdb(j.data); else loadAdb();
   };
@@ -995,7 +1396,12 @@ export const PAGE = `<!doctype html>
     control: { title: "Control", summary: "Remote keys, typing, opening apps, power, messages and the lock" },
     adb: { title: "ADB", summary: "Wireless debugging on or off, and its address", warning: "Anyone on the home network who is already paired can then connect." },
   };
-  $("agentPerms").textContent = "A new agent may read; control and ADB are switches on each agent (granting them asks for the TV's PIN). Guide for agents: " + location.origin + "/api/guide";
+  // The relay's summaries are in English; another language has its own words for the permissions it knows.
+  function permText(p, field) {
+    const own = lang !== "en" && T[lang]["perm_" + p + (field === "title" ? "" : "_" + field)];
+    return own || (AGENT_PERMS[p] && AGENT_PERMS[p][field]) || "";
+  }
+  setT($("agentPerms"), "agent_perms_text", location.origin + "/api/guide");
   function agentKey() {
     const b = new Uint8Array(24);
     crypto.getRandomValues(b);
@@ -1014,25 +1420,26 @@ export const PAGE = `<!doctype html>
   }
   function permSwitch(a, perm) {
     const row = el("label", "perm");
-    const txt = el("span", "txt", AGENT_PERMS[perm].title);
-    txt.appendChild(el("small", "", AGENT_PERMS[perm].summary));
-    if (AGENT_PERMS[perm].warning) txt.appendChild(el("small", "warn", AGENT_PERMS[perm].warning));
+    const title = permText(perm, "title");
+    const txt = el("span", "txt", title);
+    txt.appendChild(el("small", "", permText(perm, "summary")));
+    if (AGENT_PERMS[perm].warning) txt.appendChild(el("small", "warn", permText(perm, "warning")));
     const box = el("input", "switch");
     box.type = "checkbox";
     box.checked = !!a[perm];
-    box.setAttribute("aria-label", AGENT_PERMS[perm].title + " for " + a.name);
+    box.setAttribute("aria-label", t("perm_for", title, a.name));
     box.onchange = async () => {
       box.disabled = true;
       const args = { action: "set", id: a.id };
       args[perm] = box.checked;
       // Granting control or ADB takes the TV's PIN, as on the TV; the TV checks it.
-      const askPin = () => prompt("The TV's PIN, to grant " + AGENT_PERMS[perm].title + " to " + a.name + ":");
+      const askPin = () => prompt(t("ask_pin", title, a.name));
       if (box.checked && perm !== "read" && tvHasPin) {
         const pin = askPin();
         if (pin === null) { box.checked = false; box.disabled = false; return; }
         args.pin = pin.trim();
       }
-      const done = box.checked ? AGENT_PERMS[perm].title + " granted." : AGENT_PERMS[perm].title + " taken away.";
+      const done = t(box.checked ? "granted" : "taken", title);
       let j = await run("agents", { args: args }, done);
       if (!j.ok && j.data && j.data.pin && !("pin" in args)) {
         const pin = askPin();
@@ -1045,7 +1452,9 @@ export const PAGE = `<!doctype html>
     row.appendChild(box);
     return row;
   }
+  let lastAgents = null;
   function drawAgents(d) {
+    lastAgents = d;
     const list = $("agentList");
     list.textContent = "";
     (d.agents || []).forEach((a) => {
@@ -1057,12 +1466,12 @@ export const PAGE = `<!doctype html>
       head.appendChild(ic);
       const txt = el("div", "txt");
       txt.appendChild(el("b", "", a.name));
-      txt.appendChild(el("span", "", a.lastUsed ? "Used " + ago(a.lastUsed) : "Not used yet"));
+      txt.appendChild(el("span", "", a.lastUsed ? t("used_ago", ago(a.lastUsed)) : t("not_used")));
       head.appendChild(txt);
-      const revoke = el("button", "pill sm red", "Revoke");
+      const revoke = el("button", "pill sm red", t("revoke"));
       revoke.onclick = async () => {
-        if (!confirm("Revoke " + a.name + "? Its key stops working at once.")) return;
-        if ((await run("agents", { args: { action: "revoke", id: a.id } }, "Revoked.", revoke)).ok) loadAgents();
+        if (!confirm(t("revoke_confirm", a.name))) return;
+        if ((await run("agents", { args: { action: "revoke", id: a.id } }, t("revoked"), revoke)).ok) loadAgents();
       };
       head.appendChild(revoke);
       list.appendChild(head);
@@ -1078,35 +1487,35 @@ export const PAGE = `<!doctype html>
     ul.textContent = "";
     log.forEach((e) => {
       const li = el("li");
-      const t = new Date(e.t || 0);
-      li.appendChild(el("span", "when", String(t.getHours()).padStart(2, "0") + ":" + String(t.getMinutes()).padStart(2, "0")));
-      const what = el("span", "what" + (e.ok ? "" : " bad"), (e.name || "") + " · " + e.cmd + (e.what ? " " + e.what : "") + (e.ok ? "" : " · " + (e.msg || "not done")));
+      const at = new Date(e.t || 0);
+      li.appendChild(el("span", "when", String(at.getHours()).padStart(2, "0") + ":" + String(at.getMinutes()).padStart(2, "0")));
+      const what = el("span", "what" + (e.ok ? "" : " bad"), (e.name || "") + " · " + e.cmd + (e.what ? " " + e.what : "") + (e.ok ? "" : " · " + (e.msg || t("not_done"))));
       what.title = what.textContent;
       li.appendChild(what);
       ul.appendChild(li);
     });
   }
   $("agentCreate").onclick = async (e) => {
-    if (!window.crypto || !crypto.subtle) { toast("This browser can't make a key here (it needs https).", true); return; }
+    if (!window.crypto || !crypto.subtle) { toast(t("no_https"), true); return; }
     const key = agentKey();
-    const name = $("agentName").value.trim() || "Agent";
-    const j = await run("agents", { args: { action: "create", name: name, hash: await sha256hex(key), control: false } }, "Agent created.", e.currentTarget);
+    const name = $("agentName").value.trim() || t("agent_default");
+    const j = await run("agents", { args: { action: "create", name: name, hash: await sha256hex(key), control: false } }, t("agent_created"), e.currentTarget);
     if (!j.ok) return;
     $("agentName").value = "";
-    $("agentKeyTitle").textContent = "Key for " + ((j.data && j.data.name) || name) + ": copy it now";
+    setT($("agentKeyTitle"), "key_for", (j.data && j.data.name) || name);
     $("agentKey").textContent = "agent:" + tv.id + "." + key;
     $("agentKeyBox").hidden = false;
     loadAgents();
   };
   $("agentCopy").onclick = async () => {
     const text = $("agentKey").textContent;
-    try { await navigator.clipboard.writeText(text); toast("Key copied."); }
+    try { await navigator.clipboard.writeText(text); toast(t("key_copied")); }
     catch (err) {
       const r = document.createRange();
       r.selectNodeContents($("agentKey"));
       getSelection().removeAllRanges();
       getSelection().addRange(r);
-      toast("Selected: copy it from the menu.");
+      toast(t("key_selected"));
     }
   };
   // Hidden for good: the page keeps the key nowhere.
@@ -1126,20 +1535,20 @@ export const PAGE = `<!doctype html>
   }
   function canPush() { return "serviceWorker" in navigator && "PushManager" in window && "Notification" in window; }
   function b64ToBytes(s) {
-    const t = s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4);
-    return Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
+    const b64 = s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4);
+    return Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
   }
   async function setupNotify() {
     if (!canPush()) {
       $("notify").disabled = true;
-      $("notifyHint").textContent = ios && !standalone ? "Add to Home Screen first, then switch this on there" : "This browser can't show notifications";
+      setT($("notifyHint"), ios && !standalone ? "notify_need_home" : "notify_cant");
       return;
     }
     let on = false;
     try { on = localStorage.getItem(NOTIFY) === "1" && Notification.permission === "granted"; } catch (e) {}
     $("notify").checked = on;
     showNotifyOff(on);
-    if (Notification.permission === "denied") $("notifyHint").textContent = "Blocked in the phone's settings";
+    if (Notification.permission === "denied") setT($("notifyHint"), "notify_blocked");
   }
   $("notify").onchange = async (e) => {
     const box = e.currentTarget;
@@ -1147,17 +1556,17 @@ export const PAGE = `<!doctype html>
     if (box.checked) {
       try {
         const perm = await Notification.requestPermission();
-        if (perm !== "granted") throw new Error("Notifications were not allowed.");
+        if (perm !== "granted") throw new Error(t("notify_not_allowed"));
         const v = await (await fetch("/api/vapid")).json();
         const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes(v.key) });
         const j = await post("/api/push", { sub: sub.toJSON(), test: true, off: notifyOff() });
-        if (!j.ok) throw new Error(j.msg || j.error || "The relay refused.");
+        if (!j.ok) throw new Error(j.msg || j.error || t("relay_refused"));
         try { localStorage.setItem(NOTIFY, "1"); } catch (err) {}
         showNotifyOff(true);
-        toast("Notifications on.");
+        toast(t("notify_on"));
       } catch (err) {
         box.checked = false;
-        toast(err.message || "Could not switch notifications on.", true);
+        toast(err.message || t("notify_fail"), true);
       }
     } else {
       try {
@@ -1166,7 +1575,7 @@ export const PAGE = `<!doctype html>
       } catch (err) {}
       try { localStorage.removeItem(NOTIFY); } catch (err) {}
       showNotifyOff(false);
-      toast("Notifications off.");
+      toast(t("notify_off"));
     }
   };
   $("notifyOff").onchange = async (e) => {
@@ -1174,49 +1583,55 @@ export const PAGE = `<!doctype html>
     try {
       const reg = swReg || (await navigator.serviceWorker.ready);
       const sub = await reg.pushManager.getSubscription();
-      if (!sub) throw new Error("Switch notifications on first.");
+      if (!sub) throw new Error(t("notify_first"));
       const j = await post("/api/push", { endpoint: sub.endpoint, off: box.checked });
-      if (!j.ok) throw new Error(j.msg || j.error || "The relay refused.");
+      if (!j.ok) throw new Error(j.msg || j.error || t("relay_refused"));
       try { localStorage.setItem(NOTIFY_OFF, box.checked ? "1" : "0"); } catch (err) {}
-      toast(box.checked ? "You will be told when the TV turns on or off." : "Only when the TV turns on.");
+      toast(t(box.checked ? "notify_both" : "notify_on_only"));
     } catch (err) {
       box.checked = !box.checked;
-      toast(err.message || "Could not change it.", true);
+      toast(err.message || t("change_fail"), true);
     }
   };
 
   // ---- start ------------------------------------------------------------------------------------
   $("pairBtn").onclick = () => {
-    const t = parsePairing($("pairLink").value.trim());
-    if (!t) { toast("That is not the TV's pairing link.", true); return; }
-    try { localStorage.setItem(STORE, JSON.stringify(t)); } catch (e) {}
-    location.replace("/?p=" + t.id + "." + t.key);
+    const p = parsePairing($("pairLink").value.trim());
+    if (!p) { toast(t("bad_link"), true); return; }
+    try { localStorage.setItem(STORE, JSON.stringify(p)); } catch (e) {}
+    location.replace("/?p=" + p.id + "." + p.key);
   };
-  if (!tv) { $("unpaired").hidden = false; $("status").className = "status off"; $("statusText").textContent = "Not paired"; return; }
+  if (!tv) { $("unpaired").hidden = false; $("status").className = "status off"; setT($("statusText"), "st_not_paired"); return; }
   $("paired").hidden = false;
   $("tabs").hidden = false;
+  // Language: Auto (the TV's, else the phone's) or one chosen here, kept on this phone.
+  document.querySelectorAll("#langPick button").forEach((b) => (b.onclick = () => {
+    savedLang = b.dataset.lang || "";
+    try { if (savedLang) localStorage.setItem(LANG, savedLang); else localStorage.removeItem(LANG); } catch (e) {}
+    relang();
+  }));
 
   $("text").addEventListener("input", () => ($("count").textContent = $("text").value.length));
   $("send").onclick = async (e) => {
     const text = $("text").value.trim();
-    if (!text) { toast("Type a message first.", true); return; }
-    if ((await run("banner", { text: text }, "Shown on the TV.", e.currentTarget)).ok) { $("text").value = ""; $("count").textContent = 0; }
+    if (!text) { toast(t("type_first"), true); return; }
+    if ((await run("banner", { text: text }, t("shown"), e.currentTarget)).ok) { $("text").value = ""; $("count").textContent = 0; }
   };
-  $("clear").onclick = (e) => run("banner_clear", {}, "Cleared.", e.currentTarget);
-  document.querySelectorAll("[data-cmd]").forEach((b) => (b.onclick = () => run(b.dataset.cmd, {}, "Done.", b)));
-  $("lockNow").onclick = (e) => run("lock", {}, "Locked.", e.currentTarget);
-  $("unlockNow").onclick = (e) => run("unlock", {}, "Unlocked.", e.currentTarget);
-  document.querySelectorAll("#chips [data-min]").forEach((b) => (b.onclick = () => run("lock_timer", { text: b.dataset.min }, "Timer started.", b)));
+  $("clear").onclick = (e) => run("banner_clear", {}, t("cleared"), e.currentTarget);
+  document.querySelectorAll("[data-cmd]").forEach((b) => (b.onclick = () => run(b.dataset.cmd, {}, t("ok_done"), b)));
+  $("lockNow").onclick = (e) => run("lock", {}, t("locked_done"), e.currentTarget);
+  $("unlockNow").onclick = (e) => run("unlock", {}, t("unlocked_done"), e.currentTarget);
+  document.querySelectorAll("#chips [data-min]").forEach((b) => (b.onclick = () => run("lock_timer", { text: b.dataset.min }, t("timer_started"), b)));
   $("timerStart").onclick = async (e) => {
     const mins = parseInt($("minutes").value, 10);
-    if (!(mins >= 1 && mins <= 720)) { toast("1 to 720 minutes.", true); return; }
-    if ((await run("lock_timer", { text: String(mins) }, "Timer started.", e.currentTarget)).ok) $("minutes").value = "";
+    if (!(mins >= 1 && mins <= 720)) { toast(t("minutes_range"), true); return; }
+    if ((await run("lock_timer", { text: String(mins) }, t("timer_started"), e.currentTarget)).ok) $("minutes").value = "";
   };
-  $("timerCancel").onclick = (e) => run("lock_timer_cancel", {}, "Timer cancelled.", e.currentTarget);
+  $("timerCancel").onclick = (e) => run("lock_timer_cancel", {}, t("timer_cancelled"), e.currentTarget);
   $("savePin").onclick = async (e) => {
     const pin = $("pin").value.trim();
-    if (!/^[0-9]{4}$/.test(pin)) { toast("The PIN is 4 digits.", true); return; }
-    if ((await run("set_pin", { text: pin }, "PIN saved.", e.currentTarget)).ok) $("pin").value = "";
+    if (!/^[0-9]{4}$/.test(pin)) { toast(t("pin_4"), true); return; }
+    if ((await run("set_pin", { text: pin }, t("pin_saved"), e.currentTarget)).ok) $("pin").value = "";
   };
   $("savePsk").onclick = (e) => savePsk($("psk"), e.currentTarget);
   $("savePsk2").onclick = (e) => savePsk($("psk2"), e.currentTarget);
@@ -1227,14 +1642,14 @@ export const PAGE = `<!doctype html>
 
   if (!standalone) {
     if (ios) {
-      $("installHint").textContent = "Share › Add to Home Screen opens it like an app";
+      setT($("installHint"), "install_ios");
       $("install").hidden = false;
     }
     let prompt = null;
     addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       prompt = e;
-      $("installHint").textContent = "Open the remote like an app";
+      setT($("installHint"), "install_hint");
       $("installBtn").hidden = false;
       $("install").hidden = false;
     });
@@ -1249,7 +1664,7 @@ export const PAGE = `<!doctype html>
   }
 
   $("status").style.cursor = "pointer";
-  $("status").onclick = () => { $("statusText").textContent = "Checking…"; connect(); refresh(); };
+  $("status").onclick = () => { setT($("statusText"), "st_checking"); connect(); refresh(); };
 
   setupNotify();
   connect();
