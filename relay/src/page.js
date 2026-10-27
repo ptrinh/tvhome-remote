@@ -606,7 +606,10 @@ export const PAGE = `<!doctype html>
     $("statusText").textContent = on ? (power === "off" ? "Standby" : "Online") : "Offline" + (lastSeen ? " · " + ago(lastSeen) : "");
     document.body.classList.toggle("tv-off", !on);
     $("offlineCard").hidden = on || tab === "settings";
-    if (!on) {
+    if (!on && !navigator.onLine) {
+      $("offlineTitle").textContent = "This phone is offline";
+      $("offlineText").textContent = "Check Wi-Fi or mobile data. The remote reconnects by itself when the connection is back.";
+    } else if (!on) {
       $("offlineTitle").textContent = power === "off" ? "The TV is off" : "The TV is offline";
       $("offlineText").textContent = "Last seen " + (ago(lastSeen) || "a while ago") + ". The controls come back by themselves when it is on.";
     }
@@ -1252,6 +1255,9 @@ export const PAGE = `<!doctype html>
   connect();
   refresh();
   setInterval(() => { if (!document.hidden) { refresh(); loadReport(); } }, 60000);
+  // Opened from the cache without a connection: say so, and reconnect as soon as the phone is back online.
+  window.addEventListener("offline", () => setOnline(false, null));
+  window.addEventListener("online", () => { backoff = 1000; connect(); refresh(); });
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) { connect(); refresh(); }
     setLive(tab === "remote");
