@@ -49,6 +49,8 @@ final class Config {
     final String selfUpdate;
     /** The Bitcoin price line above the top buttons (Ticker); the Settings menu can override it on the TV. */
     final boolean btcTicker;
+    /** The lunar date (LunarDate) takes a turn on the greeting line after the date. */
+    final boolean lunarDate;
     /** Name after the greeting ("Good morning, Mr. Trịnh"); empty for the greeting alone. */
     final String greetingName;
     /** The Now playing card above the dock (NowPlaying); also needs the notification listener granted. */
@@ -73,6 +75,8 @@ final class Config {
     /** Occasions: the owner's days as a JSON array (validated by Occasions.parse), and the built-in holidays. */
     final String occasions;
     final boolean holidays;
+    /** Countries whose public holidays the date line's "Next PH" counts (PublicHolidays): "SG", "VN", or both. */
+    final List<String> publicHolidays;
     /** YouTube videos (ids or links) for the built-in holidays' Play card; empty: search for the song. */
     final String christmasVideo, newYearVideo, tetVideo;
     /** Background colour behind everything, #RRGGBB; black unless a theme says otherwise. */
@@ -87,9 +91,9 @@ final class Config {
     private Config(List<String> dockApps, List<String> hiddenApps, String liveTvPackage, String liveTvAction,
                    String sourcePanelService, String sourcePanelAction, String inputAction,
                    int columns, int rowsBelowDock,
-                   boolean shamsiDate, boolean moduleCards, String vpnApp, boolean showHomeSettingsShortcut, String selfUpdate, boolean btcTicker, String greetingName, boolean nowPlaying, boolean gallery,
+                   boolean shamsiDate, boolean moduleCards, String vpnApp, boolean showHomeSettingsShortcut, String selfUpdate, boolean btcTicker, boolean lunarDate, String greetingName, boolean nowPlaying, boolean gallery,
                    boolean weather, String weatherLocation, String weatherUnit, int screensaverIntervalS, boolean webControl, int webPort, String remoteRelay, boolean restoreKeyServices, String occasions, boolean holidays,
-                   String christmasVideo, String newYearVideo, String tetVideo, int backgroundColor,
+                   List<String> publicHolidays, String christmasVideo, String newYearVideo, String tetVideo, int backgroundColor,
                    File wallpaper, boolean overlayApplied, List<String> appKeys) {
         this.dockApps = Collections.unmodifiableList(dockApps);
         this.hiddenApps = Collections.unmodifiableList(hiddenApps);
@@ -106,6 +110,7 @@ final class Config {
         this.showHomeSettingsShortcut = showHomeSettingsShortcut;
         this.selfUpdate = selfUpdate;
         this.btcTicker = btcTicker;
+        this.lunarDate = lunarDate;
         this.greetingName = greetingName;
         this.nowPlaying = nowPlaying;
         this.gallery = gallery;
@@ -119,6 +124,7 @@ final class Config {
         this.restoreKeyServices = restoreKeyServices;
         this.occasions = occasions;
         this.holidays = holidays;
+        this.publicHolidays = Collections.unmodifiableList(publicHolidays);
         this.christmasVideo = christmasVideo;
         this.newYearVideo = newYearVideo;
         this.tetVideo = tetVideo;
@@ -150,6 +156,7 @@ final class Config {
         boolean homeSettings = res.getBoolean(R.bool.show_home_settings_shortcut);
         String selfUpdate = res.getString(R.string.self_update);
         boolean btc = res.getBoolean(R.bool.btc_ticker);
+        boolean lunar = res.getBoolean(R.bool.lunar_date);
         String name = res.getString(R.string.greeting_name).trim();
         boolean nowPlaying = res.getBoolean(R.bool.now_playing);
         boolean gallery = res.getBoolean(R.bool.gallery);
@@ -163,6 +170,7 @@ final class Config {
         boolean restoreKeyServices = res.getBoolean(R.bool.restore_key_services);
         String occasions = res.getString(R.string.occasions);
         boolean holidays = res.getBoolean(R.bool.holidays);
+        List<String> publicHolidays = countries(res.getString(R.string.public_holidays));
         String christmasVideo = res.getString(R.string.christmas_video).trim();
         String newYearVideo = res.getString(R.string.new_year_video).trim();
         String tetVideo = res.getString(R.string.tet_video).trim();
@@ -191,6 +199,7 @@ final class Config {
             homeSettings = bool(json, "show_home_settings_shortcut", homeSettings);
             selfUpdate = string(json, "self_update", selfUpdate);
             btc = bool(json, "btc_ticker", btc);
+            lunar = bool(json, "lunar_date", lunar);
             name = string(json, "greeting_name", name).trim();
             nowPlaying = bool(json, "now_playing", nowPlaying);
             gallery = bool(json, "gallery", gallery);
@@ -206,6 +215,7 @@ final class Config {
             JSONArray occ = json.optJSONArray("occasions");
             if (occ != null) occasions = occ.toString();
             holidays = bool(json, "holidays", holidays);
+            if (json.has("public_holidays")) publicHolidays = countries(json.optString("public_holidays", ""));
             christmasVideo = string(json, "christmas_video", christmasVideo).trim();
             newYearVideo = string(json, "new_year_video", newYearVideo).trim();
             tetVideo = string(json, "tet_video", tetVideo).trim();
@@ -218,11 +228,11 @@ final class Config {
         if (json != null && json.has("wallpaper") && !bool(json, "wallpaper", true)) wallpaper = null;
 
         return new Config(dock, hidden, liveTv, liveTvAction, panelService, panelAction, inputAction,
-                Math.max(1, columns), Math.max(0, rowsBelow), shamsi, moduleCards, vpn, homeSettings, Updater.mode(selfUpdate), btc, name, nowPlaying, gallery,
+                Math.max(1, columns), Math.max(0, rowsBelow), shamsi, moduleCards, vpn, homeSettings, Updater.mode(selfUpdate), btc, lunar, name, nowPlaying, gallery,
                 weather, weatherLocation, Weather.FAHRENHEIT.equals(weatherUnit) ? Weather.FAHRENHEIT : Weather.CELSIUS,
                 Math.max(10, Math.min(600, screensaverInterval)), webControl, Math.max(1024, Math.min(65535, webPort)),
                 remoteRelay.startsWith("https://") ? remoteRelay : "", restoreKeyServices, occasions, holidays,
-                christmasVideo, newYearVideo, tetVideo, background,
+                publicHolidays, christmasVideo, newYearVideo, tetVideo, background,
                 wallpaper, applied, appKeys);
     }
 
@@ -298,6 +308,16 @@ final class Config {
         } catch (IllegalArgumentException e) {
             return fallback;
         }
+    }
+
+    /** "sg, VN" → [SG, VN]; empty: no "Next PH" at all. */
+    static List<String> countries(String s) {
+        List<String> out = new ArrayList<>();
+        for (String c : s.split(",")) {
+            String code = c.trim().toUpperCase(java.util.Locale.ROOT);
+            if (!code.isEmpty() && !out.contains(code)) out.add(code);
+        }
+        return out;
     }
 
     private static List<String> stringList(JSONObject o, String key, List<String> fallback) {

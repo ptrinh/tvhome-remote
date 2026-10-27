@@ -19,6 +19,10 @@
     <string name="not_available">TV này không hỗ trợ</string>
     <string name="cant_open">Không mở được %1$s</string>
     <string name="date_format">EEEE, d MMMM</string>
+    <string name="next_holiday">Ngày lễ tới: %1$s</string>
+    <string name="next_holiday_date_format" translatable="false">d/M</string>
+    <string name="lunar_date">Âm lịch %1$d/%2$d%3$s năm %4$s</string>
+    <string name="lunar_leap"> nhuận</string>
     <string name="dream_name">Đồng hồ</string>
     <string name="vpn">VPN</string>
     <string name="vpn_off">VPN tắt</string>
@@ -61,6 +65,7 @@
     <string name="settings_menu_on">Bật</string>
     <string name="settings_menu_btc">Giá Bitcoin</string>
     <string name="settings_menu_weather">Thời tiết</string>
+    <string name="settings_menu_lunar">Ngày âm lịch</string>
     <string name="weather_no_location">Bật · đặt weather_location trong theme</string>
     <string name="gallery_dream_name">Thư viện ảnh</string>
     <string name="net_menu_address">Địa chỉ IP</string>

@@ -28,6 +28,12 @@
     <string name="not_available">Not available on this TV</string>
     <string name="cant_open">Can\'t open %1$s</string>
     <string name="date_format">EEE d MMM</string>
+    <!-- After the date on the greeting line: the next public holiday, "Next PH: 8 NOV (SG)". -->
+    <string name="next_holiday">Next PH: %1$s</string>
+    <string name="next_holiday_date_format" translatable="false">d MMM</string>
+    <!-- Lunar date after the date: day, month, the leap mark (lunar_leap or nothing), the year's name. -->
+    <string name="lunar_date">Lunar %1$d/%2$d%3$s %4$s</string>
+    <string name="lunar_leap"> leap</string>
     <string name="dream_name">Clock</string>
     <string name="vpn">VPN</string>
     <string name="vpn_off">VPN off</string>
@@ -61,6 +67,7 @@
     <string name="settings_menu_on">On</string>
     <string name="settings_menu_btc">Bitcoin price</string>
     <string name="settings_menu_weather">Weather</string>
+    <string name="settings_menu_lunar">Lunar date</string>
     <string name="weather_no_location">On · set weather_location in the theme</string>
     <string name="gallery_dream_name">Gallery</string>
     <string name="net_menu_address">IP address</string>

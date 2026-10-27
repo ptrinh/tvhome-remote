@@ -225,6 +225,9 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private String greetingName = "";
     static final String PREFS = "home";
     static final String PREF_BTC = "btc_ticker";
+    /** Settings menu: the lunar date's turn on the greeting line, after the date (lunar_date). */
+    static final String PREF_LUNAR = "lunar_date";
+    private boolean lunarOn;
     /** Settings menu: the phone links (relay QR code and the home-network page) in the network menu. */
     static final String PREF_REMOTE_QR = "remote_qr";
     /** Plus the input id: the owner's name for that input (renameInput). */
@@ -337,14 +340,21 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private View nowPlayingText;
     private final Runnable tidyUp = () -> setTidy(true, true);
 
-    /** The date's turn on the line: "FRI 23 OCT   Next PH: 8 NOV (SG)" (Singapore and Vietnam holidays). */
+    /** The date's turn on the line: "FRI 23 OCT   Next PH: 8 NOV (SG)" (the public_holidays countries). */
     private String dateWithHoliday() {
         String date = new java.text.SimpleDateFormat(getString(R.string.date_format), Locale.getDefault()).format(new java.util.Date());
-        String next = PublicHolidays.next(java.time.LocalDate.now());
-        return next == null ? date : date + "   Next PH: " + next;
+        String next = PublicHolidays.next(java.time.LocalDate.now(), config.publicHolidays,
+                getString(R.string.next_holiday_date_format), Locale.getDefault());
+        return next == null ? date : date + "   " + getString(R.string.next_holiday, next);
     }
 
-    /** The greeting line's turns: greeting, date, Bitcoin price (TextCycle). */
+    /** The lunar date's turn on the line: "Âm lịch 7/9 năm Bính Ngọ", "Lunar 7/9 Bính Ngọ" in English. */
+    private String lunarLine() {
+        LunarDate l = LunarDate.of(java.time.LocalDate.now());
+        return getString(R.string.lunar_date, l.day, l.month, l.leap ? getString(R.string.lunar_leap) : "", l.yearName());
+    }
+
+    /** The greeting line's turns: greeting, date, lunar date, Bitcoin price (TextCycle). */
     private TextCycle cycle;
     private CharSequence greetingLine = "", btcLine;
 
@@ -445,6 +455,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         // The greeting line takes turns with the date and the Bitcoin price, which have no lines of their own.
         cycle = new TextCycle(greeting, handler, () -> java.util.Arrays.asList(greetingLine,
                 dateWithHoliday(),
+                lunarOn ? lunarLine() : null,
                 btcOn ? btcLine : null));
         introDueAt = android.os.SystemClock.elapsedRealtime();   // a cold start is the TV coming on too
         btnWifi = findViewById(R.id.btnWifi);
@@ -569,6 +580,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         btcTicker = findViewById(R.id.btcTicker);
         UiFont.watch(btcTicker);
         btcOn = getSharedPreferences(PREFS, MODE_PRIVATE).getBoolean(PREF_BTC, cfg.btcTicker);
+        lunarOn = getSharedPreferences(PREFS, MODE_PRIVATE).getBoolean(PREF_LUNAR, cfg.lunarDate);
         weatherView = findViewById(R.id.weather);
         weatherOn = getSharedPreferences(PREFS, MODE_PRIVATE).getBoolean(PREF_WEATHER, cfg.weather);
         weatherLocation = cfg.weatherLocation;
@@ -944,6 +956,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private void readOverrides() {
         SharedPreferences p = getSharedPreferences(PREFS, MODE_PRIVATE);
         btcOn = p.getBoolean(PREF_BTC, config.btcTicker);
+        lunarOn = p.getBoolean(PREF_LUNAR, config.lunarDate);
         weatherOn = p.getBoolean(PREF_WEATHER, config.weather);
         galleryOn = p.getBoolean(PREF_GALLERY, config.gallery);
         nowPlayingOn = p.getBoolean(PREF_NOW_PLAYING, config.nowPlaying);
@@ -3872,6 +3885,16 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             btcStatus.setText(btcOn ? R.string.settings_menu_on : R.string.settings_menu_off);
             handler.removeCallbacks(btcTick);
             startTicker();
+        });
+
+        View lunarRow = addMenuRow(rows, getString(R.string.settings_menu_lunar),
+                getString(lunarOn ? R.string.settings_menu_on : R.string.settings_menu_off));
+        final TextView lunarStatus = lunarRow.findViewById(R.id.status);
+        lunarRow.setOnClickListener(v -> {
+            lunarOn = !lunarOn;
+            getSharedPreferences(PREFS, MODE_PRIVATE).edit().putBoolean(PREF_LUNAR, lunarOn).apply();
+            lunarStatus.setText(lunarOn ? R.string.settings_menu_on : R.string.settings_menu_off);
+            if (cycle != null) cycle.refresh();
         });
 
         View weatherRow = addMenuRow(rows, getString(R.string.settings_menu_weather), weatherState());

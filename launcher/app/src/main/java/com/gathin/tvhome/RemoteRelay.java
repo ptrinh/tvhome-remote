@@ -378,6 +378,7 @@ final class RemoteRelay {
                     .put("t", "hello")
                     .put("name", name)
                     .put("v", BuildConfig.VERSION_NAME)
+                    .put("lang", java.util.Locale.getDefault().toLanguageTag())   // the phone page speaks the TV's language
                     .put("phones", new JSONArray().put(sha256(p.getString(PREF_PHONE_KEY, ""))))
                     .put("agents", agents(app).forRelay())
                     .put("power", interactive() ? "on" : "off")

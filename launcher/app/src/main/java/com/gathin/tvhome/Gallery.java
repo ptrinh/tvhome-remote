@@ -60,9 +60,10 @@ final class Gallery {
         return n.endsWith(".jpg") || n.endsWith(".jpeg") || n.endsWith(".png") || n.endsWith(".webp");
     }
 
-    /** A video Home plays muted to its end: mp4, mov, m4v, mkv or webm, not hidden. */
+    /** A video Home plays muted to its end: mp4, mov, m4v, mkv or webm, not hidden, or a media store video URI. */
     static boolean isVideo(String name) {
         if (name == null || name.isEmpty() || name.startsWith(".")) return false;
+        if (name.startsWith("content://media/external/video/")) return true;
         String n = name.toLowerCase(Locale.ROOT);
         return n.endsWith(".mp4") || n.endsWith(".mov") || n.endsWith(".m4v") || n.endsWith(".mkv") || n.endsWith(".webm");
     }
@@ -219,6 +220,16 @@ final class Gallery {
                 new String[] {Environment.DIRECTORY_PICTURES + "/" + FOLDER + "/"}, MediaStore.Images.Media.DISPLAY_NAME)) {
             while (c != null && c.moveToNext() && out.size() < MAX_FILES) {
                 if (isPhoto(c.getString(1))) out.add(ContentUris.withAppendedId(images, c.getLong(0)).toString());
+            }
+        }
+        if (!videos) return out;
+        // Videos are in the media store's video table, not the images one.
+        Uri clips = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        String[] videoCols = {MediaStore.Video.Media._ID, MediaStore.Video.Media.DISPLAY_NAME};
+        try (Cursor c = cr.query(clips, videoCols, MediaStore.Video.Media.RELATIVE_PATH + "=?",
+                new String[] {Environment.DIRECTORY_PICTURES + "/" + FOLDER + "/"}, MediaStore.Video.Media.DISPLAY_NAME)) {
+            while (c != null && c.moveToNext() && out.size() < MAX_FILES) {
+                if (isVideo(c.getString(1))) out.add(ContentUris.withAppendedId(clips, c.getLong(0)).toString());
             }
         }
         return out;

@@ -87,6 +87,10 @@
          also switched on the TV: hold OK on Settings, then Bitcoin price. -->
     <bool name="btc_ticker">false</bool>
 
+    <!-- The Vietnamese lunar date (âm lịch) takes a turn on the greeting line after the date. Off by default;
+         also switched on the TV: hold OK on Settings, then Lunar date. -->
+    <bool name="lunar_date">false</bool>
+
     <!-- Weather next to the date: an icon and the temperature now, from Open-Meteo (no account, no key),
          refreshed every 30 minutes while Home is in front. Off by default; also switched on the TV: hold OK
          on Settings, then Weather. weather_location is "lat,lon" (e.g. "1.29,103.85") or a place name
@@ -144,6 +148,9 @@
          CHRISTMAS 🎄 🎅); New Year, 31 December and 1 January (HAPPY NEW YEAR 🍾 🎉); Tết, three days before
          mùng 1 to five days after (HAPPY NEW YEAR 🧧 🎉). -->
     <bool name="holidays">true</bool>
+    <!-- Countries whose public holidays "Next PH" after the date counts, comma separated: SG, VN or both
+         (the table in PublicHolidays.java). Empty: no Next PH. In config.json: "public_holidays": "VN". -->
+    <string name="public_holidays" translatable="false">SG,VN</string>
     <!-- On an occasion day a Play card stands in for Now playing and plays a song on YouTube: the occasion's
          own "video", else a search (Happy Birthday song for birthdays). These pick a video for the built-in
          holidays instead of a search: a YouTube link or 11-character video id; empty searches for the song. -->
