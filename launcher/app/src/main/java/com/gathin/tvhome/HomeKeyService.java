@@ -56,6 +56,7 @@ public class HomeKeyService extends AccessibilityService {
 
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
+        if (ScreenBlank.dismissOnKey(event)) return true;
         // Remote buttons set on the TV (KeyRemap), unless InputKeyService is on too: every filtering service is
         // asked about each key, so only one of them may run the action.
         if (InputKeyService.running == null && KeyRemap.onKey(this, event)) return true;

@@ -17,6 +17,8 @@
     <!-- The lock timer's countdown over other apps (TvLock). Never asked for: the install script allows it
          with appops; without it the timer shows toasts instead. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Wake from the phone on a TV without Sony IP control (RemoteRelay "wake"). -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- The phone remote's live view (LiveService): screen capture needs a foreground service. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />

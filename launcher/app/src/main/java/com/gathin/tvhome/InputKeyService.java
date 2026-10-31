@@ -84,6 +84,8 @@ public class InputKeyService extends AccessibilityService {
 
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
+        // A black screen from the phone (no Sony IP control): any button brings the picture back.
+        if (ScreenBlank.dismissOnKey(event)) return true;
         // Buttons the owner set on the TV (KeyRemap) come before the config's.
         if (KeyRemap.onKey(this, event)) return true;
         // app_keys: a scancode entry is more specific than any keycode, so it goes first.

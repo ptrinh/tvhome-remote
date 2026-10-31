@@ -568,9 +568,17 @@ final class RemoteRelay {
                 });
                 return "Cleared.";
             case "screen_off":
+                if (psk.isEmpty()) {
+                    if (!ScreenBlank.show(app)) throw new SonyIp.Failed("The launcher may not draw over apps on this TV.");
+                    return "Screen black. Sound keeps playing; any button brings the picture back.";
+                }
                 SonyIp.pictureOff(psk, true);
                 return "Screen off. The TV keeps running.";
             case "screen_on":
+                if (psk.isEmpty()) {
+                    ScreenBlank.hide();
+                    return "Screen on.";
+                }
                 SonyIp.pictureOff(psk, false);
                 return "Screen on.";
             case "standby": {
@@ -592,6 +600,16 @@ final class RemoteRelay {
                 throw sonyFailed != null ? sonyFailed : new SonyIp.Failed("Set the Sony IP control key in Settings on the phone page first.");
             }
             case "wake":
+                if (psk.isEmpty()) {
+                    // No IP control: a wake lock that turns the screen on (the TV's network standby keeps us connected).
+                    ScreenBlank.hide();
+                    android.os.PowerManager pm = (android.os.PowerManager) app.getSystemService(Context.POWER_SERVICE);
+                    @SuppressWarnings("deprecation")
+                    android.os.PowerManager.WakeLock wl = pm.newWakeLock(android.os.PowerManager.SCREEN_BRIGHT_WAKE_LOCK
+                            | android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP, "tvhome:wake");
+                    wl.acquire(3000);
+                    return "The TV is on.";
+                }
                 SonyIp.power(psk, true);
                 try {
                     SonyIp.pictureOff(psk, false);
@@ -666,6 +684,11 @@ final class RemoteRelay {
                     if (i > 0) Thread.sleep(Math.max(50, Math.min(2000, args.optInt("gapMs", 250))));
                     // "ActionMenu|Options": the first name this TV has.
                     String[] choices = names.optString(i).split("[|]");
+                    if (psk.isEmpty()) {
+                        // No IP control (some models have none, e.g. BRAVIA 2 II): the accessibility service.
+                        accessibilityButton(choices[0].trim());
+                        continue;
+                    }
                     SonyIp.Failed last = null;
                     for (String c : choices) {
                         try {
@@ -918,21 +941,78 @@ final class RemoteRelay {
      * Holding OK on the phone: IRCC has no key hold, so the accessibility service long-clicks the node that has
      * the focus (Home's menus and tiles, or another app's), the same as holding OK on the remote.
      */
-    private static String longPress() throws Exception {
-        InputKeyService a = InputKeyService.running;
-        if (a == null) throw new SonyIp.Failed("The launcher's accessibility service is off.");
+    /** The focused node on screen, the active window's first; null when nothing has the focus. */
+    private static android.view.accessibility.AccessibilityNodeInfo focused(AccessibilityService a) {
         android.view.accessibility.AccessibilityNodeInfo target = null;
         for (android.view.accessibility.AccessibilityWindowInfo w : a.getWindows()) {
             android.view.accessibility.AccessibilityNodeInfo root = w.getRoot();
             if (root == null) continue;
             android.view.accessibility.AccessibilityNodeInfo f = root.findFocus(android.view.accessibility.AccessibilityNodeInfo.FOCUS_INPUT);
             if (f == null) f = root.findFocus(android.view.accessibility.AccessibilityNodeInfo.FOCUS_ACCESSIBILITY);
-            if (f != null && w.isActive()) {
-                target = f;
-                break;
-            }
+            if (f != null && w.isActive()) return f;
             if (f != null && target == null) target = f;
         }
+        return target;
+    }
+
+    /**
+     * A remote button without IP control: arrows move the focus, Confirm clicks it, Return/Home are global
+     * actions and the volume goes through AudioManager. Apps that read raw key events (a video player's
+     * seek) don't see these; the Sony key covers those where the TV has one.
+     */
+    private static void accessibilityButton(String name) throws Exception {
+        String n = name.toLowerCase(java.util.Locale.ROOT);
+        android.media.AudioManager audio = (android.media.AudioManager) app.getSystemService(Context.AUDIO_SERVICE);
+        switch (n) {
+            case "volumeup":
+                audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC, android.media.AudioManager.ADJUST_RAISE, android.media.AudioManager.FLAG_SHOW_UI);
+                return;
+            case "volumedown":
+                audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC, android.media.AudioManager.ADJUST_LOWER, android.media.AudioManager.FLAG_SHOW_UI);
+                return;
+            case "mute":
+                audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC, android.media.AudioManager.ADJUST_TOGGLE_MUTE, android.media.AudioManager.FLAG_SHOW_UI);
+                return;
+            case "return":
+            case "back":
+                global("back");
+                return;
+            case "home":
+                global("home");
+                return;
+            default:
+        }
+        int dir;
+        switch (n) {
+            case "up": dir = android.view.View.FOCUS_UP; break;
+            case "down": dir = android.view.View.FOCUS_DOWN; break;
+            case "left": dir = android.view.View.FOCUS_LEFT; break;
+            case "right": dir = android.view.View.FOCUS_RIGHT; break;
+            case "confirm":
+            case "enter":
+            case "ok": dir = 0; break;
+            default: throw new SonyIp.Failed(name + " needs the Sony IP control key, which this TV has no setting for.");
+        }
+        AccessibilityService a = InputKeyService.running != null ? InputKeyService.running : HomeKeyService.running;
+        if (a == null) throw new SonyIp.Failed("The launcher's accessibility service is off.");
+        android.view.accessibility.AccessibilityNodeInfo f = focused(a);
+        if (f == null) throw new SonyIp.Failed("Nothing on the TV has the focus.");
+        if (dir == 0) {
+            android.view.accessibility.AccessibilityNodeInfo t = f;
+            for (int i = 0; t != null && i < 6 && !t.isClickable(); i++) t = t.getParent();
+            if (t == null || !t.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK)) {
+                throw new SonyIp.Failed("The focused item on the TV does not open.");
+            }
+            return;
+        }
+        android.view.accessibility.AccessibilityNodeInfo next = f.focusSearch(dir);
+        if (next != null) next.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_FOCUS);
+    }
+
+    private static String longPress() throws Exception {
+        InputKeyService a = InputKeyService.running;
+        if (a == null) throw new SonyIp.Failed("The launcher's accessibility service is off.");
+        android.view.accessibility.AccessibilityNodeInfo target = focused(a);
         // The focused view itself may not take a long click; its nearest ancestor that does.
         for (int i = 0; target != null && i < 6 && !target.isLongClickable(); i++) target = target.getParent();
         if (target == null) throw new SonyIp.Failed("Nothing on the TV is focused to hold.");
