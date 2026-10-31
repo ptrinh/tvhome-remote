@@ -3839,7 +3839,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         }
         String icon = Weather.icon(r.code, r.day);
         if (!icon.isEmpty() && !weatherView.getPaint().hasGlyph(icon)) icon = "";
-        weatherView.setText(Weather.line(r, icon));
+        weatherView.setText(Weather.line(r, icon, getString(R.string.weather_rain)));
         weatherView.setVisibility(View.VISIBLE);
     }
 

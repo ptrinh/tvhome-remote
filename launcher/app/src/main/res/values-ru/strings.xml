@@ -81,4 +81,5 @@
     <string name="agents_log_empty">Команд агентов пока нет</string>
     <string name="agents_ok">OK</string>
     <string name="agents_failed">Не выполнено</string>
+    <string name="weather_rain">Дождь:</string>
 </resources>

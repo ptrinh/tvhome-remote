@@ -22,14 +22,13 @@ final class LastUse {
                 .putLong(PREF, System.currentTimeMillis()).apply();
     }
 
-    /** "Last TV usage: 1:25 AM 20 OCT", or "" when nothing was recorded yet. */
+    /** "Last TV usage: 1:25 AM 20 OCT" ("Lần dùng TV gần nhất: 1:25 SA 20/10"), or "" when nothing was recorded yet. */
     static String line(Context c) {
         long at = c.getSharedPreferences(MainActivity.PREFS, Context.MODE_PRIVATE).getLong(PREF, 0);
-        return at == 0 ? "" : format(at);
-    }
-
-    static String format(long at) {
-        return "Last TV usage: " + new SimpleDateFormat("h:mm a d MMM", Locale.ENGLISH).format(new Date(at))
-                .toUpperCase(Locale.ENGLISH);
+        if (at == 0) return "";
+        Locale locale = Locale.getDefault();
+        String when = new SimpleDateFormat(c.getString(R.string.last_tv_usage_date_format), locale)
+                .format(new Date(at)).toUpperCase(locale);
+        return c.getString(R.string.last_tv_usage, when);
     }
 }

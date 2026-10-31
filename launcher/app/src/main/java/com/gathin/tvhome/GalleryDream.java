@@ -169,7 +169,7 @@ public class GalleryDream extends ClockDream {
         if (r == null) return;
         String icon = Weather.icon(r.code, r.day);
         if (!icon.isEmpty() && !view.getPaint().hasGlyph(icon)) icon = "";
-        view.setText(Weather.line(r, icon));
+        view.setText(Weather.line(r, icon, getString(R.string.weather_rain)));
         view.setVisibility(View.VISIBLE);
     }
 

@@ -74,4 +74,5 @@
     <string name="agents_log_empty">Encara cap ordre d\'agent</string>
     <string name="agents_ok">Fet</string>
     <string name="agents_failed">No fet</string>
+    <string name="weather_rain">Pluja:</string>
 </resources>

@@ -149,8 +149,13 @@ final class Weather {
 
     /** "Rain: 40% 1h 30% 2h", or "" when both are unknown or below {@link #RAIN_SHOWN_FROM}. */
     static String formatRain(int in1h, int in2h) {
+        return formatRain("Rain:", in1h, in2h);
+    }
+
+    /** As {@link #formatRain(int, int)} with the label in the TV's language ("Mưa:"). */
+    static String formatRain(String label, int in1h, int in2h) {
         if (Math.max(in1h, in2h) < RAIN_SHOWN_FROM) return "";
-        StringBuilder sb = new StringBuilder("Rain:");
+        StringBuilder sb = new StringBuilder(label);
         if (in1h >= 0) sb.append(' ').append(in1h).append("% 1h");
         if (in2h >= 0) sb.append(' ').append(in2h).append("% 2h");
         return sb.toString();
@@ -183,9 +188,13 @@ final class Weather {
 
     /** "☁ 29°", then the rain chance in smaller, dimmer type when there is one worth showing. */
     static CharSequence line(Reading r, String icon) {
+        return line(r, icon, "Rain:");
+    }
+
+    static CharSequence line(Reading r, String icon, String rainLabel) {
         android.text.SpannableStringBuilder sb = new android.text.SpannableStringBuilder(
                 icon.isEmpty() ? formatTemp(r.temp) : icon + " " + formatTemp(r.temp));
-        String rain = formatRain(r.rain1h, r.rain2h);
+        String rain = formatRain(rainLabel, r.rain1h, r.rain2h);
         if (!rain.isEmpty()) {
             sb.append("   ");
             int start = sb.length();

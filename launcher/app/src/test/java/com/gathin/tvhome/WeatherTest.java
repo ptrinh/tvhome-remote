@@ -88,6 +88,7 @@ public class WeatherTest {
         assertEquals("Rain: 40% 1h 30% 2h", Weather.formatRain(40, 30));
         assertEquals("Rain: 5% 1h 25% 2h", Weather.formatRain(5, 25));
         assertEquals("", Weather.formatRain(10, 5));
+        assertEquals("Mưa: 40% 1h 30% 2h", Weather.formatRain("Mưa:", 40, 30));
         assertEquals("", Weather.formatRain(-1, -1));
     }
 

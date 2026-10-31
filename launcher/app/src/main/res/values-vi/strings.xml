@@ -240,4 +240,7 @@
     <string name="agents_log_empty">Chưa có lệnh nào từ trợ lý</string>
     <string name="agents_ok">OK</string>
     <string name="agents_failed">Không làm được</string>
+    <string name="weather_rain">Mưa:</string>
+    <string name="last_tv_usage">Lần dùng TV gần nhất: %1$s</string>
+    <string name="last_tv_usage_date_format">h:mm a d/M</string>
 </resources>

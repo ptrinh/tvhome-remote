@@ -249,4 +249,7 @@
     <string name="agents_log_empty">No agent commands yet</string>
     <string name="agents_ok">OK</string>
     <string name="agents_failed">Not done</string>
+    <string name="weather_rain">Rain:</string>
+    <string name="last_tv_usage">Last TV usage: %1$s</string>
+    <string name="last_tv_usage_date_format">h:mm a d MMM</string>
 </resources>
